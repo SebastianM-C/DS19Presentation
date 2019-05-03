@@ -1,5 +1,19 @@
 \documentclass{beamer}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage[super]{nth}
+
+\usepackage{graphicx}
+\graphicspath{{../assets/}}
+
+\newcommand{\ee}{\operatorname{e}}          % Euler's number
+\newcommand{\ii}{\mathrm{i}}                % imaginary unit
+\newcommand{\ad}[1]{a_{#1}^{\dagger}}       % creation operator
+\newcommand*\mean[1]{\overline{#1}}         % mean
 
 \usetheme{metropolis}           % Use metropolis theme
 \title{Large-Scale Numerical Investigations into the Dynamics of Nonlinear Classical Systems}
@@ -7,12 +21,70 @@
 \author{Sebastian Micluța-Câmpeanu}
 \institute{University of Bucharest}
 \begin{document}
-  \maketitle
+\maketitle
 
-  \section{First Section}
+\begin{frame}{Outline}
+  \tableofcontents[]
+\end{frame}
 
-  \begin{frame}{First Frame}
+\begin{frame}{Acknowledgements}
+	\begin{itemize}
+		\item S.~Micluța-Câmpeanu, A.I.~Nicolin, and V.~Băran have been
+		supported by PN-III-P4-ID-PCE-2016-0792.
+		The work of M.C.~Raportaru was supported through the project PN 18090205/2018.
+		\item All numerical simulations were performed on the computing cluster of
+		Department of Computational Physics and Information Technologies,
+		``Horia Hulubei'' National Institute for Physics and Nuclear Engineering.
+	\end{itemize}
+\end{frame}
 
-  \end{frame}
+\section{Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{The model}
+  \begin{itemize}
+		\item The physical system that we model is the surface of heavy nuclei.
+    \item The Hamiltonian describes the constrained motion of the vibrational quadrupole degrees of freedom of nuclear surface.
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{The model}
+	The Hamiltonian of the system
+	\begin{equation*}
+    H = \alert<1,2>{\frac{A}{2}\left(p_0^2+p_2^2\right)+\frac{A}{2}\left(q_0^2+q_2^2\right)}
+		 +\alert<3>{\frac{B}{\sqrt{2}}q_0\left(3q_2^2-q_0^2\right)}
+		 +\alert<2>{\frac{D}{4}\left(q_0^2+q_2^2\right)^2}
+  \end{equation*}
+
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item \alert<1> {Harmonic oscillator part}
+			\item \alert<2> {Integrable part}
+			\item \alert<3> {Non-integrable term}
+		\end{itemize}
+
+		\column{0.5\textwidth}
+		\includegraphics[width=\textwidth]{nucleus}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusions}
+
+\begin{frame}[standout]
+Thank you!
+\end{frame}
 
 \end{document}
