@@ -1,6 +1,6 @@
 module DS19Presentation
 
-export load, slide4, slide5, save_animation, animate
+export load, slide4, slide5, slide6, slide7, save_animation, animate
 
 using DataDeps
 using MD5
@@ -31,7 +31,7 @@ function load()
     deserialize(datadep"DS19 test database/graph.jls")
 end
 
-function ics(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+function ics(g, E=0.1, ic_alg=PoincareRand(n=5), B=0.15)
     p = PhysicalParameters(B=B)
     q0, p0 = initial_conditions!(g, E, alg=ic_alg, params=p)
     p₀ = [SVector{2}(p0[i, :]) for i ∈ axes(p0, 1)]
@@ -39,24 +39,24 @@ function ics(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
     z0 = [vcat(p₀[i], q₀[i]) for i ∈ axes(q₀, 1)]
 end
 
-function get_sol(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+function get_sol(g, i=1, ic_alg=PoincareRand(n=5); B=0.15, E=0.1)
     p = PhysicalParameters(B=B)
-    z0 = ics(g, E, ic_alg, p)
-    prob = ODEProblem(ż, z0[2], 40., p)
+    z0 = ics(g, E, ic_alg, B)
+    prob = ODEProblem(ż, z0[i], 40., p)
     sol = solve(prob, Vern9(), abstol=1e-14, reltol=1e-14, maxiters=1e9)
 end
 
-function get_sim(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+function get_sim(g, ic_alg=PoincareRand(n=5); B=0.15, E=0.1)
     p = PhysicalParameters(B=B)
     q0, p0 = initial_conditions!(g, E, alg=ic_alg, params=p)
     poincaremap(q0, p0, params=p, t=40)
 end
 
-function get_psol(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+function get_psol(g, i=1, ic_alg=PoincareRand(n=5); B=0.15, E=0.1)
     p = PhysicalParameters(B=B)
-    z0 = ics(g, E, ic_alg, p)
+    z0 = ics(g, E, ic_alg, B)
     d0 = 1e-3
-    pprob = parallel_problem(ż, (z0[2], z0[2].+d0/√4), 40., p)
+    pprob = parallel_problem(ż, (z0[i], z0[i].+d0/√4), 40., p)
     psol = solve(pprob, Vern9(), abstol=1e-14, reltol=1e-14, maxiters=1e9)
 end
 
@@ -91,13 +91,13 @@ function slide5(g; saveimage=false, savevideo=false)
 end
 
 function slide6(g; saveimage=false, savevideo=false)
-    sol = get_sol(g)
-    sim = get_sim(g)
+    sol = get_sol(g, 1, B=0.55)
+    sim = get_sim(g, B=0.55)
     t = Node(0.)
 
     surface_sc = animate_solution(sol, t)
     line_sc = path_animation3D(sol, t)
-    plot_slice!(line_sc, sim[2])
+    plot_slice!(line_sc, sim[1])
 
     sc = vbox(surface_sc, line_sc, sizes=[0.5,0.5])
     if saveimage
@@ -112,7 +112,7 @@ function slide6(g; saveimage=false, savevideo=false)
 end
 
 function slide7(g; saveimage=false, savevideo=false)
-    psol = get_psol(g)
+    psol = get_psol(g, 1, B=0.55, E=1.)
     t = Node(0.)
 
     parallel_sc = parallel_paths(psol, t)
