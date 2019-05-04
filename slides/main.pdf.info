@@ -1,0 +1,17 @@
+PageProps = {
+	9: {
+	       'title': "The model",
+	       'video': "../assets/nucleus-with-sections.mp4",
+	       'always': True
+	     }
+	10: {
+	       'title': "The model",
+	       'video': "../assets/nucleus-with-poincare.mp4",
+	       'always': True
+	     }
+ 	11: {
+	       'title': "The model",
+	       'video': "../assets/dist-with-log.mp4",
+	       'always': True
+	     }
+}

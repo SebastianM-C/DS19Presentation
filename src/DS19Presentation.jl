@@ -1,13 +1,13 @@
 module DS19Presentation
 
-export load, slide4, slide5
+export load, slide4, slide5, save_animation, animate
 
 using DataDeps
 using MD5
 using Serialization
 using StorageGraphs
 
-ENV["DATADEPS_ALWAYS_ACCEPT"] = true
+# ENV["DATADEPS_ALWAYS_ACCEPT"] = true
 
 function __init__()
     include("$(@__DIR__)/data.jl")
@@ -17,6 +17,7 @@ using NuclearSurfaceVibrations
 using .Classical
 using .Visualizations
 using .InitialConditions: depchain, initial_conditions!
+using .Classical.ParallelTrajectories
 using StaticArrays
 using OrdinaryDiffEq
 using Makie
@@ -30,46 +31,105 @@ function load()
     deserialize(datadep"DS19 test database/graph.jls")
 end
 
-function get_sol(g, E, ic_alg, p)
+function ics(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+    p = PhysicalParameters(B=B)
     q0, p0 = initial_conditions!(g, E, alg=ic_alg, params=p)
     p₀ = [SVector{2}(p0[i, :]) for i ∈ axes(p0, 1)]
     q₀ = [SVector{2}(q0[i, :]) for i ∈ axes(q0, 1)]
     z0 = [vcat(p₀[i], q₀[i]) for i ∈ axes(q₀, 1)]
-    prob = ODEProblem(ż, z0[1], 100., p)
+end
+
+function get_sol(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+    p = PhysicalParameters(B=B)
+    z0 = ics(g, E, ic_alg, p)
+    prob = ODEProblem(ż, z0[2], 40., p)
     sol = solve(prob, Vern9(), abstol=1e-14, reltol=1e-14, maxiters=1e9)
 end
 
-function slide4(g; saveimage=false)
-    E = 0.1
-    p = PhysicalParameters(B=0.15)
-    ic_alg = PoincareRand(n=10)
+function get_sim(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+    p = PhysicalParameters(B=B)
+    q0, p0 = initial_conditions!(g, E, alg=ic_alg, params=p)
+    poincaremap(q0, p0, params=p, t=40)
+end
 
-    sol = get_sol(g, E, ic_alg, p)
+function get_psol(g, E=0.1, ic_alg=PoincareRand(n=10), B=0.15)
+    p = PhysicalParameters(B=B)
+    z0 = ics(g, E, ic_alg, p)
+    d0 = 1e-3
+    pprob = parallel_problem(ż, (z0[2], z0[2].+d0/√4), 40., p)
+    psol = solve(pprob, Vern9(), abstol=1e-14, reltol=1e-14, maxiters=1e9)
+end
+
+function slide4(g; saveimage=false)
+    sol = get_sol(g)
     t = Node(0.)
+
     surface_sc = animate_solution(sol, t)
     if saveimage
-        save("assets/nucleus.png", surface_sc)
+        path = joinpath("assets", "nucleus.png")
+        save(path, surface_sc)
     end
     return surface_sc
 end
 
 function slide5(g; saveimage=false, savevideo=false)
-    E = 0.1
-    p = PhysicalParameters(B=0.15)
-    ic_alg = PoincareRand(n=10)
-
-    sol = get_sol(g, E, ic_alg, p)
+    sol = get_sol(g)
     t = Node(0.)
+
     surface_sc = animate_solution(sol, t)
     section_sc = θϕ_sections(sol, t, surface_sc.limits[])
     sc = vbox(surface_sc, section_sc, sizes=[0.7, 0.3])
     if saveimage
-        save("assets/nucleus-with-sections.png", sc)
+        path = joinpath("assets", "nucleus-with-sections.png")
+        save(path, sc)
     end
     if savevideo
-        save_animation(sc, t, (0, 40), "nucleus-with-sections.webm")
+        path = joinpath("assets", "nucleus-with-sections.mp4")
+        save_animation(sc, t, (0, 10), path)
     end
-    return t, surface_sc
+    return t, sc
+end
+
+function slide6(g; saveimage=false, savevideo=false)
+    sol = get_sol(g)
+    sim = get_sim(g)
+    t = Node(0.)
+
+    surface_sc = animate_solution(sol, t)
+    line_sc = path_animation3D(sol, t)
+    plot_slice!(line_sc, sim[2])
+
+    sc = vbox(surface_sc, line_sc, sizes=[0.5,0.5])
+    if saveimage
+        path = joinpath("assets", "nucleus-with-poincare.png")
+        save(path, sc)
+    end
+    if savevideo
+        path = joinpath("assets", "nucleus-with-poincare.mp4")
+        save_animation(sc, t, (0, 40), path)
+    end
+    return t, sc
+end
+
+function slide7(g; saveimage=false, savevideo=false)
+    psol = get_psol(g)
+    t = Node(0.)
+
+    parallel_sc = parallel_paths(psol, t)
+    psc = paths_distance(psol, t)
+    lpsc = paths_distance_log(psol, t)
+    dsc = hbox(psc, lpsc)
+    sc = vbox(parallel_sc, dsc, sizes=[0.5, 0.5])
+
+    if saveimage
+        path = joinpath("assets", "dist-with-log.png")
+        save(path, sc)
+    end
+    if savevideo
+        path = joinpath("assets", "dist-with-log.mp4")
+        save_animation(sc, t, (0, 40), path)
+    end
+    return t, sc
 end
 
 end # module
