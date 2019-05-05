@@ -22,6 +22,8 @@ using StaticArrays
 using OrdinaryDiffEq
 using Makie
 
+include("benchmarks.jl")
+
 # open("src/data.jl", "w") do fh
 #     registration = generate(Figshare(), "https://figshare.com/articles/DS19_test_database/8078699")
 #     print(fh, registration)
@@ -31,11 +33,17 @@ function load()
     deserialize(datadep"DS19 test database/graph.jls")
 end
 
-function ics(g, E=0.1, ic_alg=PoincareRand(n=5), B=0.15)
+function ics_separate(g, E=0.1, ic_alg=PoincareRand(n=5), B=0.15)
     p = PhysicalParameters(B=B)
     q0, p0 = initial_conditions!(g, E, alg=ic_alg, params=p)
     p₀ = [SVector{2}(p0[i, :]) for i ∈ axes(p0, 1)]
     q₀ = [SVector{2}(q0[i, :]) for i ∈ axes(q0, 1)]
+
+    return p₀, q₀
+end
+
+function ics(g, E=0.1, ic_alg=PoincareRand(n=5), B=0.15)
+    p₀, q₀ = ics_separate(g, E, ic_alg, B)
     z0 = [vcat(p₀[i], q₀[i]) for i ∈ axes(q₀, 1)]
 end
 
