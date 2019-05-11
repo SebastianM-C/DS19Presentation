@@ -56,9 +56,9 @@ function timings(g, t; rescaling=false)
     run(suite)
 end
 
-energy_err(sol) = map(
+energy_err(sol) = DiffEqArray(map(
     i->H((sol[1,i], sol[2,i]), (sol[3,i], sol[4,i]), PhysicalParameters(B=0.15)) - E,
-    axes(sol,2))
+    axes(sol,2)), sol.t)
 
 function E_conservation(g, t; rescaling=false, short=true)
     p = prob_setup(g, t, rescaling=rescaling)
@@ -86,6 +86,38 @@ function E_conservation(g, t; rescaling=false, short=true)
     suite["SofSpa10"] = (t=t, err=energy_err(sol))
 
     return suite
+end
+
+function collect_results(g, t; rescaling=false, short=true)
+    E_results = E_conservation(g, t, rescaling=rescaling, short=short)
+    if short
+        t_results = timings(g, t, rescaling=rescaling)
+        integ1 = keys(t_results["ODEProblem"])
+        integ2 = keys(t_results["DynamicalODEProblem"])
+        solvers = Iterators.flatten((integ1,integ2))
+
+        ts1 = [minimum(t_results["ODEProblem"][i].times) for i in integ1]
+        ts2 = [minimum(t_results["DynamicalODEProblem"][i].times) for i in integ2]
+        ts = Iterators.flatten((ts1,ts2))
+    else
+        solvers = keys(E_results)
+        ts = [E_results[i].t for i in solvers]
+    end
+    E_err = [E_results[i].err for i in solvers]
+
+    return solvers, ts, E_err
+end
+
+function short_benchmark(g; rescaling=false)
+    solvers, ts, E_err = collect_results(g, 10., rescaling=rescaling, short=true)
+    p1 = plot(E_err, labels=solvers)
+    p2 = plot(ts, xlabes=solvers)
+    plot(p1, p2)
+end
+
+function long_benchmark(g; rescaling=false)
+    solvers, ts, E_err = collect_results(g, 1e4, rescaling=rescaling, short=false)
+    plot(E_err, labels=solvers)
 end
 
 # h=load()
