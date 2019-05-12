@@ -2,11 +2,13 @@ using BenchmarkTools
 using TaylorIntegration
 using DiffEqCallbacks
 using ParameterizedFunctions
+using RecursiveArrayTools
 using Parameters
 using Plots
+pgfplots()
 
-function prob_setup(g, t; rescaling=false)
-    p0, q0 = ics_separate(g)
+function prob_setup(g, t; rescaling=false, Ttr=1e3, τ=5.)
+    p0, q0 = ics_separate(g, E, PoincareRand(n=5), 0.15)
     z0 = ics(g)
 
     p = PhysicalParameters(B=0.15)
@@ -14,9 +16,9 @@ function prob_setup(g, t; rescaling=false)
         prob1 = DynamicalODEProblem(ṗ, q̇, p0[1], q0[1], t, p)
         prob2 = ODEProblem(ż, z0[1], t, p)
     else
-        d0 = 1e-9
-        prob1 = λproblem(ż, (z0[1], z0[1].+d0/√4), t, p)
-        prob2 = λproblem(ṗ, q̇, (p0[1], p0[1].+d0/√2), (q0[1], q0[1].+d0/√2), t, p)
+        alg = TimeRescaling(T=t, Ttr=Ttr, τ=τ)
+        prob1 = λproblem(p0[1], q0[1], alg, params=p)
+        prob2 = λproblem(z0[1], alg, params=p)
     end
     @unpack A,B,D = p
     prob3 = ODEProblem(h_eqs, Array(z0[1]), t, (A,B,D))
@@ -59,16 +61,26 @@ function timings(g, t; rescaling=false)
     run(suite)
 end
 
-energy_err(sol) = DiffEqArray(map(
-    i->H((sol[1,i], sol[2,i]), (sol[3,i], sol[4,i]), PhysicalParameters(B=0.15)) - E,
+energy_err(sol,offset=0) = DiffEqArray(map(
+    i->H((sol[1,i], sol[2,i]),
+         (sol[3+offset,i], sol[4+offset,i]),
+         PhysicalParameters(B=0.15)
+        ) - E,
     axes(sol,2)), sol.t)
 
 function E_conservation(g, t; rescaling=false, short=true)
-    p = prob_setup(g, t, rescaling=rescaling)
+    if short
+        Ttr = 0.
+        saveat = Float64[]
+    else
+        Ttr = 1e3
+        saveat = 1.
+    end
+    p = prob_setup(g, t, rescaling=rescaling, Ttr=Ttr)
 
     suite = Dict{String,NamedTuple}()
     GC.gc()
-    sol, t = @timed solve(p[2], Vern9(), abstol=1e-14, reltol=1e-14)
+    sol, t = @timed solve(p[2], Vern9(), abstol=1e-14, reltol=1e-14, saveat=saveat)
     suite["Vern9"] = (t=t, err=energy_err(sol))
     if !rescaling && short
         GC.gc()
@@ -78,15 +90,16 @@ function E_conservation(g, t; rescaling=false, short=true)
         sol, t = @timed solve(p[3], TaylorMethod(50), abstol=1e-20)
         suite["TaylorMethod"] = (t=t, err=energy_err(sol))
     end
+    offset = rescaling ? 2 : 0
     GC.gc()
     sol, t = @timed solve(p[1], DPRKN12(), abstol=1e-14, reltol=1e-14)
-    suite["DPRKN12"] = (t=t, err=energy_err(sol))
+    suite["DPRKN12"] = (t=t, err=energy_err(sol, offset))
     GC.gc()
-    sol, t = @timed solve(p[1], KahanLi8(), dt=1e-2)
-    suite["KahanLi8"] = (t=t, err=energy_err(sol))
+    sol, t = @timed solve(p[1], KahanLi8(), dt=1e-2, saveat=saveat)
+    suite["KahanLi8"] = (t=t, err=energy_err(sol, offset))
     GC.gc()
-    sol, t = @timed solve(p[1], SofSpa10(), dt=1e-2)
-    suite["SofSpa10"] = (t=t, err=energy_err(sol))
+    sol, t = @timed solve(p[1], SofSpa10(), dt=1e-2, saveat=saveat)
+    suite["SofSpa10"] = (t=t, err=energy_err(sol, offset))
 
     return suite
 end
@@ -99,6 +112,7 @@ function collect_results(g, t; rescaling=false, short=true)
         integ2 = keys(t_results["DynamicalODEProblem"])
         solvers = Iterators.flatten((integ1,integ2))
 
+        # times are in nanoseconds
         ts1 = [minimum(t_results["ODEProblem"][i].times) for i in integ1]
         ts2 = [minimum(t_results["DynamicalODEProblem"][i].times) for i in integ2]
         ts = Iterators.flatten((ts1,ts2))
@@ -112,37 +126,43 @@ function collect_results(g, t; rescaling=false, short=true)
 end
 
 function short_benchmark(g; rescaling=false)
-    solvers, ts, E_err = collect_results(g, 10., rescaling=rescaling, short=true)
-    p1 = plot(E_err, labels=solvers)
-    p2 = plot(ts, xlabes=solvers)
-    plot(p1, p2)
+    solvers, ts, E_errs = collect_results(g, 100., rescaling=rescaling, short=true)
+    p1 = plot(background_color=colorant"#FAFAFA",
+              xlabel="t",
+              ylabel="Energy error",
+              tex_output_standalone=true
+        )
+    for (E_err,solver) in zip(E_errs, solvers)
+        plot!(p1, E_err, label=solver)
+    end
+    p2 = plot(background_color=colorant"#FAFAFA",
+              xlabel="Solver",
+              ylabel="Computation time (ms)",
+              tex_output_standalone=true,
+              legend=false
+        )
+    scatter!(p2, string.(solvers), ts./1e6)
+
+    return p1, p2
 end
 
 function long_benchmark(g; rescaling=false)
     solvers, ts, E_err = collect_results(g, 1e4, rescaling=rescaling, short=false)
-    plot(E_err, labels=solvers)
+    p1 = plot(background_color=colorant"#FAFAFA",
+              xlabel="t",
+              ylabel="Energy error",
+              tex_output_standalone=true
+        )
+    for (E_err,solver) in zip(E_errs, solvers)
+        plot!(p1, E_err, label=solver)
+    end
+    p2 = plot(background_color=colorant"#FAFAFA",
+              xlabel="Solver",
+              ylabel="Computation time (s)",
+              tex_output_standalone=true,
+              legend=false
+        )
+    scatter!(p2, string.(solvers), ts)
+
+    return p1, p2
 end
-
-# h=load()
-#
-# results = run_suite(h, 10.)
-#
-# results["ODEProblem"]["Vern9"].times
-#
-# p1, p2 = prob_setup(g, 10.)
-#
-# sol = solve(p1, DPRKN12(), abstol=1e-14, reltol=1e-14)
-#
-# i=12
-#
-# energy_err(sol)
-
-t_results = timings(h, 10.)
-E_results = E_conservation(h, 10.)
-
-integ1 = keys(t_results["ODEProblem"])
-integ2 = keys(t_results["DynamicalODEProblem"])
-
-ts = 
-
-plot(results)

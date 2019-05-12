@@ -10,6 +10,10 @@
 \usepackage{graphicx}
 \graphicspath{{../assets/}}
 
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{standalone}
+
 \newcommand{\ee}{\operatorname{e}}          % Euler's number
 \newcommand{\ii}{\mathrm{i}}                % imaginary unit
 \newcommand{\ad}[1]{a_{#1}^{\dagger}}       % creation operator
@@ -103,6 +107,85 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/short-benchmark-E}
+		\caption{Energy error benchmark for short integration time}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/short-benchmark-t}
+		\caption{Computational time benchmark for short integration time}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/short-benchmark-rescaling-E}
+		\caption{Energy error benchmark for short integration time with rescaling}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/short-benchmark-rescaling-t}
+		\caption{Computational time benchmark for short integration time with rescaling}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 13 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/long-benchmark-E}
+		\caption{Energy error benchmark for long integration time}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 14 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/long-benchmark-t}
+		\caption{Computational time benchmark for long integration time}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 15 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/long-benchmark-rescaling-E}
+		\caption{Energy error benchmark for long integration time with rescaling}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 16 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/long-benchmark-rescaling-t}
+		\caption{Computational time benchmark for long integration time with rescaling}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 17 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/long-benchmark-rescaling-t}
+		\caption{Computational time benchmark for long integration time with rescaling}
+	\end{figure}
+\end{frame}
 
 \section{Conclusions}
 

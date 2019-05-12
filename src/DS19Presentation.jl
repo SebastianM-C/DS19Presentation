@@ -1,6 +1,8 @@
 module DS19Presentation
 
-export load, slide4, slide5, slide6, slide7, save_animation, animate
+export load, slide4, slide5, slide6, slide7, slide8, slide9_10, slide11_12,
+    slide13_14, slide15_16, slide17_18_19, slide20, slide21,
+    save_animation, animate
 
 using DataDeps
 using MD5
@@ -20,6 +22,9 @@ using .InitialConditions: depchain, initial_conditions!
 using .Classical.ParallelTrajectories
 using StaticArrays
 using OrdinaryDiffEq
+using LaTeXStrings
+using IntervalArithmetic
+
 # using Makie
 
 include("benchmarks.jl")
@@ -138,6 +143,73 @@ function slide7(g; saveimage=false, savevideo=false)
         save_animation(sc, t, (0, 40), path)
     end
     return t, sc
+end
+
+function slide8(g; saveimage=false, savevideo=false)
+    # body
+end
+
+function slide9_10(g)
+    p1, p2 = short_benchmark(g)
+    savefig(p1, "assets/short-benchmark-E.tex")
+    savefig(p2, "assets/short-benchmark-t.tex")
+
+    return p1, p2
+end
+
+function slide11_12(g)
+    p1, p2 = short_benchmark(g, rescaling=true)
+    savefig(p1, "assets/short-benchmark-rescaling-E.tex")
+    savefig(p2, "assets/short-benchmark-rescaling-t.tex")
+
+    return p1, p2
+end
+
+function slide13_14(g)
+    p1, p2 = long_benchmark(g)
+    savefig(p1, "assets/long-benchmark-E.tex")
+    savefig(p2, "assets/long-benchmark-t.tex")
+
+    return p1, p2
+end
+
+function slide15_16(g)
+    p1, p2 = long_benchmark(g, rescaling=true)
+    savefig(p1, "assets/long-benchmark-rescaling-E.tex")
+    savefig(p2, "assets/long-benchmark-rescaling-t.tex")
+
+    return p1, p2
+end
+
+function slide17_18_19(g)
+    E = 120.
+    p = PhysicalParameters(B=0.55)
+    ic_alg = PoincareRand(n=500)
+    ic_dep = Classical.InitialConditions.depchain(p,E,ic_alg)
+    for T in 10^(4:6)
+        λs = g[:λ, ic_dep..., (λ_alg=DynSys(T=T),)][1]
+        plt = histogram(λs, nbins = 50, label="T=$T")
+        savefig(plt, "assets/hist_lambda_$T.tex")
+    end
+end
+
+function slide20(g)
+    E = 120.
+    p = PhysicalParameters(B=0.55)
+    ic_alg = PoincareRand(n=500)
+    ic_dep = Classical.InitialConditions.depchain(p,E,ic_alg)
+    λs = g[:λ, ic_dep..., (λ_alg=DynSys(T=1e5),)][1]
+    selected = Reductions.select_after_first_max(λs)
+    plt = histogram(λs, nbins = 50, label=L"T=10^5")
+    histogram!(selected, nbins = 50, label="selected")
+end
+
+function slide21(g)
+    p = PhysicalParameters(B=0.5)
+    ic_alg = PoincareRand(n=500)
+    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=0..1000)
+    savefig(plt, "assets/mean-over-ic.tex")
+    return plt
 end
 
 end # module
