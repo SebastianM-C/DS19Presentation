@@ -24,6 +24,7 @@ using StaticArrays
 using OrdinaryDiffEq
 using LaTeXStrings
 using IntervalArithmetic
+using StatsBase
 
 # using Makie
 
@@ -200,12 +201,18 @@ function slide20(g)
     ic_dep = Classical.InitialConditions.depchain(p,E,ic_alg)
     λs = g[:λ, ic_dep..., (λ_alg=DynSys(T=1e5),)][1]
     selected = Reductions.select_after_first_max(λs)
-    plt = histogram(λs, nbins = 50, label=L"T=10^5")
-    histogram!(selected, nbins = 50, label="selected")
+
+    λhist = fit(Histogram, λs, nbins=50)
+    shist = fit(Histogram, selected, λhist.edges[1])
+    plt = plot(λhist, label=L"T=10^5")
+    plot!(plt, shist, label="selected")
+
+    savefig(plt, "assets/hist_lambda_selected.tex")
+    return plt
 end
 
 function slide21(g)
-    p = PhysicalParameters(B=0.5)
+    p = PhysicalParameters(B=0.55)
     ic_alg = PoincareRand(n=500)
     plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=0..1000)
     savefig(plt, "assets/mean-over-ic.tex")
