@@ -145,9 +145,9 @@ version = "0.5.2"
 
 [[CSV]]
 deps = ["CategoricalArrays", "DataFrames", "Dates", "Mmap", "Parsers", "PooledArrays", "Profile", "Tables", "Unicode", "WeakRefStrings"]
-git-tree-sha1 = "733d67569d4a3990a372647a44ec7dc1b70d34a0"
+git-tree-sha1 = "42657742cc25fb5f79e0c906cf29fb8702afdd6e"
 uuid = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
-version = "0.5.0"
+version = "0.5.1"
 
 [[Calculus]]
 deps = ["Compat"]
@@ -444,10 +444,10 @@ uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 version = "0.7.0"
 
 [[DynamicalSystems]]
-deps = ["ChaosTools", "DelayEmbeddings", "DynamicalSystemsBase", "RecurrenceAnalysis", "Reexport", "StaticArrays"]
-git-tree-sha1 = "8bcef2ed49c45e0444a98fe6c424d4f3a231cdce"
+deps = ["ChaosTools", "DelayEmbeddings", "DynamicalSystemsBase", "Pkg", "RecurrenceAnalysis", "Reexport", "StaticArrays"]
+git-tree-sha1 = "21c5e930bb74f5cf55ffa671d8843ea5a958837e"
 uuid = "61744808-ddfa-5f27-97ff-6e42cc95d634"
-version = "1.2.0"
+version = "1.2.1"
 
 [[DynamicalSystemsBase]]
 deps = ["DelayEmbeddings", "DiffEqBase", "ForwardDiff", "LinearAlgebra", "Reexport", "SimpleDiffEq", "SparseArrays", "StaticArrays", "Statistics"]
@@ -670,15 +670,15 @@ version = "0.8.2"
 
 [[ImageDistances]]
 deps = ["ColorVectorSpace", "Colors", "Distances", "FixedPointNumbers", "ImageCore"]
-git-tree-sha1 = "9c7d37730294fdbf2c7664ec661fd65466bbf860"
+git-tree-sha1 = "6a5d39c88229d68405cd0a56a63073962f79d188"
 uuid = "51556ac3-7006-55f5-8cb3-34580c88182d"
-version = "0.2.2"
+version = "0.2.3"
 
 [[ImageFiltering]]
 deps = ["CatIndices", "ColorVectorSpace", "Colors", "ComputationalResources", "DataStructures", "FFTViews", "FFTW", "FixedPointNumbers", "ImageCore", "LinearAlgebra", "MappedArrays", "OffsetArrays", "Requires", "StaticArrays", "Statistics", "TiledIteration"]
-git-tree-sha1 = "7b550a5c0901086229416ad6e93c7d61dfaceb9e"
+git-tree-sha1 = "fbd3e1f83346256429a6bad8462461f962b389db"
 uuid = "6a3955dd-da59-5b1f-98d4-e7296123deb5"
-version = "0.6.1"
+version = "0.6.2"
 
 [[ImageMagick]]
 deps = ["BinaryProvider", "ColorTypes", "FileIO", "FixedPointNumbers", "ImageCore", "InteractiveUtils", "Libdl", "Pkg", "Random"]
@@ -1055,7 +1055,7 @@ version = "0.4.3"
 
 [[NuclearSurfaceVibrations]]
 deps = ["AbstractPlotting", "Arpack", "CSV", "ChaosTools", "Colors", "DataFrames", "DataStructures", "DiffEqBase", "DiffEqCallbacks", "DiffEqMonteCarlo", "DiffEqParamEstim", "DifferentialEquations", "Distributed", "DynamicalSystems", "DynamicalSystemsBase", "FileIO", "GLMakie", "GeometricalPredicates", "ImageMagick", "Images", "IntervalArithmetic", "JLD2", "LaTeXStrings", "LightGraphs", "LinearAlgebra", "Logging", "LoggingExtras", "Makie", "NLopt", "NLsolve", "Observables", "OrdinaryDiffEq", "ParallelDataTransfer", "Parameters", "Pkg", "PlotlyJS", "Plots", "ProgressMeter", "Query", "Random", "RecipesBase", "RecursiveArrayTools", "Reexport", "Roots", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "StatsMakie", "StatsPlots", "StorageGraphs", "TimerOutputs", "UnicodeFun"]
-git-tree-sha1 = "2afbb8dca8045dd9e880263decce9e511f9c352b"
+git-tree-sha1 = "c12a491da81b4b3380870eb402e9cb03503d5505"
 repo-rev = "graphs"
 repo-url = "https://github.com/SebastianM-C/Nuclear-surface-vibrations"
 uuid = "61377714-a6e6-11e8-0d55-23ea14e6950b"
@@ -1415,10 +1415,10 @@ uuid = "4c63d2b9-4356-54db-8cca-17b64c39e42c"
 version = "0.8.0"
 
 [[StatsMakie]]
-deps = ["AbstractPlotting", "Distributions", "FileIO", "FreqTables", "IntervalSets", "KernelDensity", "Loess", "NamedArrays", "Observables", "OrderedCollections", "Random", "Statistics", "StatsBase", "StructArrays", "Tables", "Test", "Widgets"]
-git-tree-sha1 = "9e0eb098edaf19249c3680f24e22e133a2aef800"
+deps = ["AbstractPlotting", "Distributions", "FileIO", "FreqTables", "IntervalSets", "KernelDensity", "Loess", "NamedArrays", "Observables", "OrderedCollections", "Random", "Statistics", "StatsBase", "StructArrays", "Tables", "Widgets"]
+git-tree-sha1 = "6cabe4f63e0126d7e16926d3479206da0900f290"
 uuid = "65254759-4cff-5aa5-8326-61ce017a8c70"
-version = "0.0.4"
+version = "0.0.5"
 
 [[StatsModels]]
 deps = ["Compat", "DataFrames", "StatsBase", "Test"]
@@ -1446,9 +1446,9 @@ version = "6.1.1"
 
 [[StorageGraphs]]
 deps = ["BSON", "Distributed", "GraphPlot", "JLD", "LightGraphs", "Serialization", "SharedArrays"]
-git-tree-sha1 = "61a0a040c25f2a672047c2be47e724b5a7b29d9f"
+git-tree-sha1 = "116b4fb60cd0dd190630a0ed24c090fcc2782a88"
 uuid = "fa9e2bbc-20aa-512b-a47b-5a4d8687aaeb"
-version = "0.2.1"
+version = "0.3.1"
 
 [[StructArrays]]
 deps = ["PooledArrays", "Requires", "Test"]
@@ -1492,9 +1492,9 @@ version = "0.4.0"
 
 [[Tables]]
 deps = ["IteratorInterfaceExtensions", "LinearAlgebra", "Requires", "TableTraits", "Test"]
-git-tree-sha1 = "e2abd466ca2f00a1bb8cb80024d59745cc8f91a6"
+git-tree-sha1 = "9e748316f5aa7b7753c90de612ef98fe8b0ea297"
 uuid = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
-version = "0.2.0"
+version = "0.2.1"
 
 [[TaylorIntegration]]
 deps = ["DiffEqBase", "Espresso", "LinearAlgebra", "Markdown", "Reexport", "TaylorSeries", "Test"]

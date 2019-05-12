@@ -9,7 +9,7 @@ PageProps = {
 	       'video': "../assets/nucleus-with-poincare.mp4",
 	       'always': True
 	     },
- 	11: {
+ 	12: {
 	       'title': "The model",
 	       'video': "../assets/dist-with-log.mp4",
 	       'always': True

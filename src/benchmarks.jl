@@ -3,6 +3,7 @@ using TaylorIntegration
 using DiffEqCallbacks
 using ParameterizedFunctions
 using Parameters
+using Plots
 
 function prob_setup(g, t; rescaling=false)
     p0, q0 = ics_separate(g)
@@ -44,8 +45,10 @@ function timings(g, t; rescaling=false)
 
     suite["ODEProblem"] = BenchmarkGroup()
     suite["ODEProblem"]["Vern9"] = @benchmarkable solve($p2, Vern9(), abstol=1e-14, reltol=1e-14)
-    !rescaling && suite["ODEProblem"]["Vern9+ManifoldProjection"] = @benchmarkable solve($p3, Vern9(), callback=cb, abstol=1e-14, reltol=1e-14)
-    !rescaling && suite["ODEProblem"]["TaylorMethod"] = @benchmarkable solve($p3, TaylorMethod(50), abstol=1e-20)
+    if !rescaling
+        suite["ODEProblem"]["Vern9+ManifoldProjection"] = @benchmarkable solve($p3, Vern9(), callback=cb, abstol=1e-14, reltol=1e-14)
+        suite["ODEProblem"]["TaylorMethod"] = @benchmarkable solve($p3, TaylorMethod(50), abstol=1e-20)
+    end
 
     suite["DynamicalODEProblem"] = BenchmarkGroup()
     suite["DynamicalODEProblem"]["DPRKN12"] =  @benchmarkable solve($p1, DPRKN12(), abstol=1e-14, reltol=1e-14)
@@ -65,7 +68,7 @@ function E_conservation(g, t; rescaling=false, short=true)
 
     suite = Dict{String,NamedTuple}()
     GC.gc()
-    sol, t = @timed solve(p[1], Vern9(), abstol=1e-14, reltol=1e-14)
+    sol, t = @timed solve(p[2], Vern9(), abstol=1e-14, reltol=1e-14)
     suite["Vern9"] = (t=t, err=energy_err(sol))
     if !rescaling && short
         GC.gc()
@@ -76,28 +79,26 @@ function E_conservation(g, t; rescaling=false, short=true)
         suite["TaylorMethod"] = (t=t, err=energy_err(sol))
     end
     GC.gc()
-    sol, t = @timed solve(p[2], DPRKN12(), abstol=1e-14, reltol=1e-14)
+    sol, t = @timed solve(p[1], DPRKN12(), abstol=1e-14, reltol=1e-14)
     suite["DPRKN12"] = (t=t, err=energy_err(sol))
     GC.gc()
-    sol, t = @timed solve(p[2], KahanLi8(), dt=1e-2)
+    sol, t = @timed solve(p[1], KahanLi8(), dt=1e-2)
     suite["KahanLi8"] = (t=t, err=energy_err(sol))
     GC.gc()
-    sol, t = @timed solve(p[2], SofSpa10(), dt=1e-2)
+    sol, t = @timed solve(p[1], SofSpa10(), dt=1e-2)
     suite["SofSpa10"] = (t=t, err=energy_err(sol))
 
     return suite
 end
 
-# h=load()
-#
-# results = run_suite(h, 10.)
-#
-# results["ODEProblem"]["Vern9"].times
-#
-# p1, p2 = prob_setup(g, 10.)
-#
-# sol = solve(p1, DPRKN12(), abstol=1e-14, reltol=1e-14)
-#
-# i=12
-#
-# energy_err(sol)
+h=load()
+
+t_results = timings(h, 10.)
+E_results = E_conservation(h, 10.)
+
+integ1 = keys(t_results["ODEProblem"])
+integ2 = keys(t_results["DynamicalODEProblem"])
+
+ts = 
+
+plot(results)
