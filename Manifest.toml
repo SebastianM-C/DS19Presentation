@@ -137,6 +137,12 @@ git-tree-sha1 = "805164abcd31facf3a7e5b7d803a0d16b23329bc"
 uuid = "96374032-68de-5a5b-8d9e-752f78720389"
 version = "0.7.1"
 
+[[CSSUtil]]
+deps = ["Colors", "Compat", "JSON", "Measures", "Pkg", "WebIO"]
+git-tree-sha1 = "ff13fd99e4dd54f56eb064815f843bc992a871a2"
+uuid = "70588ee8-6100-5070-97c1-3cb50ed05fe8"
+version = "0.1.0"
+
 [[CSTParser]]
 deps = ["LibGit2", "Test", "Tokenize"]
 git-tree-sha1 = "437c93bc191cd55957b3f8dee7794b6131997c56"
@@ -174,10 +180,10 @@ uuid = "324d7699-5711-5eae-9e2f-1d82baa6b597"
 version = "0.5.2"
 
 [[ChaosTools]]
-deps = ["Combinatorics", "DiffEqBase", "Distances", "DynamicalSystemsBase", "ForwardDiff", "LinearAlgebra", "NearestNeighbors", "Random", "Reexport", "Roots", "StaticArrays", "Statistics", "StatsBase", "Test"]
-git-tree-sha1 = "df13c89cd7db75f9353525f46f94cb7a1015df7d"
+deps = ["Combinatorics", "DiffEqBase", "Distances", "Distributions", "DynamicalSystemsBase", "ForwardDiff", "LinearAlgebra", "NearestNeighbors", "Random", "Reexport", "Roots", "StaticArrays", "Statistics", "StatsBase"]
+git-tree-sha1 = "89dd8066167b96954ce1f569cb1730e1d8e452ae"
 uuid = "608a59af-f2a3-5ad4-90b4-758bdf3122a7"
-version = "1.5.0"
+version = "1.6.0"
 
 [[Clustering]]
 deps = ["Dates", "Distances", "LinearAlgebra", "NearestNeighbors", "Printf", "Random", "SparseArrays", "Statistics", "StatsBase", "Test"]
@@ -746,6 +752,24 @@ git-tree-sha1 = "098e4d2c533924c921f9f9847274f2ad89e018b8"
 uuid = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
 version = "0.5.0"
 
+[[Interact]]
+deps = ["CSSUtil", "InteractBase", "JSON", "Knockout", "Observables", "OrderedCollections", "Reexport", "Test", "WebIO", "Widgets"]
+git-tree-sha1 = "f6531bc554990a6659966afcb8f05543c032068b"
+uuid = "c601a237-2ae4-5e1e-952c-7a85b0c7eef1"
+version = "0.10.2"
+
+[[InteractBase]]
+deps = ["Base64", "CSSUtil", "Colors", "Dates", "JSExpr", "JSON", "Knockout", "Observables", "OrderedCollections", "Random", "Test", "WebIO", "Widgets"]
+git-tree-sha1 = "83fc45f21bfec97e5cd56e790f6945497ab0f095"
+uuid = "d3863d7c-f0c8-5437-a7b4-3ae773c01009"
+version = "0.10.1"
+
+[[InteractiveChaos]]
+deps = ["AbstractPlotting", "Blink", "Colors", "DynamicalSystems", "Interact", "Observables", "Reexport", "StatsBase", "StatsMakie", "Test"]
+git-tree-sha1 = "1b122de32713a06bec16b4f8d3eb87d58f5c0109"
+uuid = "81850811-659e-51ab-a7c2-5dd848ff4aa4"
+version = "0.3.2"
+
 [[InteractiveUtils]]
 deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
@@ -827,6 +851,12 @@ deps = ["Distributions", "FFTW", "Interpolations", "Optim", "StatsBase", "Test"]
 git-tree-sha1 = "c1048817fe5711f699abc8fabd47b1ac6ba4db04"
 uuid = "5ab0869b-81aa-558d-bb23-cbf5423bbe9b"
 version = "0.5.1"
+
+[[Knockout]]
+deps = ["JSExpr", "JSON", "Observables", "Pkg", "Test", "WebIO"]
+git-tree-sha1 = "5cca7f070f85392cd0f42220c8ea5f7be96dacf4"
+uuid = "bcebb21b-c2e3-54f8-a781-646b90f6d2cc"
+version = "0.2.2"
 
 [[LaTeXStrings]]
 deps = ["Compat"]
@@ -1066,8 +1096,8 @@ uuid = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
 version = "0.4.3"
 
 [[NuclearSurfaceVibrations]]
-deps = ["AbstractPlotting", "Arpack", "CSV", "ChaosTools", "Colors", "DataFrames", "DataStructures", "DiffEqBase", "DiffEqCallbacks", "DiffEqMonteCarlo", "DiffEqParamEstim", "DifferentialEquations", "Distributed", "DynamicalSystems", "DynamicalSystemsBase", "FileIO", "GLMakie", "GeometricalPredicates", "ImageMagick", "Images", "IntervalArithmetic", "JLD2", "LaTeXStrings", "LightGraphs", "LinearAlgebra", "Logging", "LoggingExtras", "Makie", "NLopt", "NLsolve", "Observables", "OrdinaryDiffEq", "ParallelDataTransfer", "Parameters", "Pkg", "PlotlyJS", "Plots", "ProgressMeter", "Query", "Random", "RecipesBase", "RecursiveArrayTools", "Reexport", "Roots", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "StatsMakie", "StatsPlots", "StorageGraphs", "TimerOutputs", "UnicodeFun"]
-git-tree-sha1 = "b58b2304a55ab782fa2fc25a8e4289c9547b2fb8"
+deps = ["AbstractPlotting", "Arpack", "CSV", "ChaosTools", "Colors", "DataFrames", "DataStructures", "DiffEqBase", "DiffEqCallbacks", "DiffEqMonteCarlo", "DiffEqParamEstim", "DifferentialEquations", "Distributed", "DynamicalSystems", "DynamicalSystemsBase", "FileIO", "GLMakie", "GeometricalPredicates", "ImageMagick", "Images", "InteractiveChaos", "IntervalArithmetic", "JLD2", "LaTeXStrings", "LightGraphs", "LinearAlgebra", "Logging", "LoggingExtras", "Makie", "NLopt", "NLsolve", "Observables", "OrdinaryDiffEq", "ParallelDataTransfer", "Parameters", "Pkg", "PlotlyJS", "Plots", "ProgressMeter", "Query", "Random", "RecipesBase", "RecursiveArrayTools", "Reexport", "Roots", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "StatsMakie", "StatsPlots", "StorageGraphs", "TimerOutputs", "UnicodeFun"]
+git-tree-sha1 = "d74c2616a916854c6713c1588b68f2b476b6fbcd"
 repo-rev = "master"
 repo-url = "https://github.com/SebastianM-C/Nuclear-surface-vibrations"
 uuid = "61377714-a6e6-11e8-0d55-23ea14e6950b"
@@ -1105,9 +1135,9 @@ version = "1.1.0"
 
 [[OrdinaryDiffEq]]
 deps = ["DataStructures", "DiffEqBase", "DiffEqDiffTools", "DiffEqOperators", "ExponentialUtilities", "ForwardDiff", "GenericSVD", "LinearAlgebra", "Logging", "MuladdMacro", "NLsolve", "Parameters", "RecursiveArrayTools", "Reexport", "StaticArrays"]
-git-tree-sha1 = "ba5dce61ef10d064301f90b866f0467497d521ee"
+git-tree-sha1 = "303576079177e7e2675b5597ccaf65fd9980d092"
 uuid = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
-version = "5.6.0"
+version = "5.6.1"
 
 [[PDMats]]
 deps = ["Arpack", "LinearAlgebra", "SparseArrays", "SuiteSparse", "Test"]

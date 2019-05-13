@@ -20,6 +20,7 @@
 \newcommand*\mean[1]{\overline{#1}}         % mean
 
 \usetheme{metropolis}           % Use metropolis theme
+\usepackage{appendixnumberbeamer}
 \title{Large-Scale Numerical Investigations into the Dynamics of Nonlinear Classical Systems}
 \date{\today}
 \author{Sebastian Micluța-Câmpeanu}
@@ -103,7 +104,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-	% \includegraphics[width=\textwidth]{poincare-explorer}
+	% \includegraphics[width=\textwidth]{poincare}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,30 +129,12 @@
 
 \begin{frame}
 	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/short-benchmark-rescaling-E}
-		\caption{Energy error benchmark for short integration time with rescaling}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/short-benchmark-rescaling-t}
-		\caption{Computational time benchmark for short integration time with rescaling}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 13 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/long-benchmark-E}
 		\caption{Energy error benchmark for long integration time}
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 14 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -160,7 +143,80 @@
 	\end{figure}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 13 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/hist-lambda-4}
+		\caption{Maximal Lyapunov coefficient histogram for \(B=0.55, E=120\).}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 14 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/hist-lambda-5}
+		\caption{Maximal Lyapunov coefficient histogram for \(B=0.55, E=120\).}
+	\end{figure}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 15 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/hist-lambda-6}
+		\caption{Maximal Lyapunov coefficient histogram for \(B=0.55, E=120\).}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 16 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/hist-lambda-selected}
+		\caption{Selecting the chaotic trajectories for \(B=0.55, E=120\).}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 17 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/mean-over-ic}
+		\caption{Averaged \(\lambda\) for \(B=0.55, E \in (10, 1000)\).}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 18 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusions}
+
+\begin{frame}[standout]
+Thank you!
+\end{frame}
+
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide a1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/short-benchmark-rescaling-E}
+		\caption{Energy error benchmark for short integration time with rescaling}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide a2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/short-benchmark-rescaling-t}
+		\caption{Computational time benchmark for short integration time with rescaling}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide a3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -169,7 +225,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 16 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide a4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -178,19 +234,20 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 17 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide a5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/long-benchmark-rescaling-t}
-		\caption{Computational time benchmark for long integration time with rescaling}
-	\end{figure}
+\begin{frame}[fragile]{Backup slides}
+  Sometimes, it is useful to add slides at the end of your presentation to
+  refer to during audience questions.
+
+
 \end{frame}
 
-\section{Conclusions}
+\begin{frame}[allowframebreaks]{References}
 
-\begin{frame}[standout]
-Thank you!
+  \bibliography{demo}
+  \bibliographystyle{abbrv}
+
 \end{frame}
 
 \end{document}

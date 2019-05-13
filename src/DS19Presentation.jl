@@ -1,7 +1,8 @@
 module DS19Presentation
 
 export load, slide4, slide5, slide6, slide7, slide8, slide9_10, slide11_12,
-    slide13_14, slide15_16, slide17_18_19, slide20, slide21,
+    slide13_14_15, slide16, slide17,
+    slide_a1_4,
     save_animation, animate
 
 using DataDeps
@@ -146,8 +147,12 @@ function slide7(g; saveimage=false, savevideo=false)
     return t, sc
 end
 
-function slide8(g; saveimage=false, savevideo=false)
-    # body
+function slide8(g; saveimage=false)
+    sc = poincare_explorer(g, 120., DynSys(T=1e5), PoincareRand(n=500), t=1e4)
+    if saveimage
+        path = joinpath("assets", "poincare.png")
+        save(path, sc)
+    end
 end
 
 function slide9_10(g)
@@ -159,14 +164,6 @@ function slide9_10(g)
 end
 
 function slide11_12(g)
-    p1, p2 = short_benchmark(g, rescaling=true)
-    savefig(p1, "assets/short-benchmark-rescaling-E.tex")
-    savefig(p2, "assets/short-benchmark-rescaling-t.tex")
-
-    return p1, p2
-end
-
-function slide13_14(g)
     p1, p2 = long_benchmark(g)
     savefig(p1, "assets/long-benchmark-E.tex")
     savefig(p2, "assets/long-benchmark-t.tex")
@@ -174,47 +171,51 @@ function slide13_14(g)
     return p1, p2
 end
 
-function slide15_16(g)
-    p1, p2 = long_benchmark(g, rescaling=true)
-    savefig(p1, "assets/long-benchmark-rescaling-E.tex")
-    savefig(p2, "assets/long-benchmark-rescaling-t.tex")
+function slide_a1_4(g)
+    p1, p2 = short_benchmark(g, rescaling=true)
+    p3, p4 = long_benchmark(g, rescaling=true)
+    savefig(p1, "assets/short-benchmark-rescaling-E.tex")
+    savefig(p2, "assets/short-benchmark-rescaling-t.tex")
+    savefig(p3, "assets/long-benchmark-rescaling-E.tex")
+    savefig(p4, "assets/long-benchmark-rescaling-t.tex")
 
-    return p1, p2
+    return p1, p2, p3, p4
 end
 
-function slide17_18_19(g)
+function slide13_14_15(g)
     E = 120.
     p = PhysicalParameters(B=0.55)
     ic_alg = PoincareRand(n=500)
     ic_dep = Classical.InitialConditions.depchain(p,E,ic_alg)
-    for T in 10^(4:6)
+    for T in 10. .^(4:6)
         λs = g[:λ, ic_dep..., (λ_alg=DynSys(T=T),)][1]
-        plt = histogram(λs, nbins = 50, label="T=$T")
-        savefig(plt, "assets/hist_lambda_$T.tex")
+        plt = histogram(λs, nbins = 50,
+            label="T=$T", lw=0, framestyle=:grid,
+            background_color=colorant"#FAFAFA")
+        tpow = Int(log10(T))
+        savefig(plt, "assets/hist-lambda-$tpow.tex")
     end
 end
 
-function slide20(g)
+function slide16(g)
     E = 120.
     p = PhysicalParameters(B=0.55)
     ic_alg = PoincareRand(n=500)
-    ic_dep = Classical.InitialConditions.depchain(p,E,ic_alg)
-    λs = g[:λ, ic_dep..., (λ_alg=DynSys(T=1e5),)][1]
-    selected = Reductions.select_after_first_max(λs)
+    λhist, shist = selected_hist(g, E, DynSys(T=1e5), ic_alg, params=p)
+    plt = plot(λhist, label=L"T=10^5",
+        lw=0, framestyle=:grid, background_color=colorant"#FAFAFA")
+    plot!(plt, shist, label="selected", lw=0)
 
-    λhist = fit(Histogram, λs, nbins=50)
-    shist = fit(Histogram, selected, λhist.edges[1])
-    plt = plot(λhist, label=L"T=10^5")
-    plot!(plt, shist, label="selected")
-
-    savefig(plt, "assets/hist_lambda_selected.tex")
+    savefig(plt, "assets/hist-lambda-selected.tex")
     return plt
 end
 
-function slide21(g)
+function slide17(g)
     p = PhysicalParameters(B=0.55)
     ic_alg = PoincareRand(n=500)
-    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=0..1000)
+    plt = plot(background_color=colorant"#FAFAFA")
+    mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:1000,
+        plt=plt, framestyle=:grid)
     savefig(plt, "assets/mean-over-ic.tex")
     return plt
 end

@@ -130,6 +130,7 @@ function short_benchmark(g; rescaling=false)
     p1 = plot(background_color=colorant"#FAFAFA",
               xlabel="t",
               ylabel="Energy error",
+              framestyle=:grid,
               tex_output_standalone=true
         )
     for (E_err,solver) in zip(E_errs, solvers)
@@ -138,19 +139,21 @@ function short_benchmark(g; rescaling=false)
     p2 = plot(background_color=colorant"#FAFAFA",
               xlabel="Solver",
               ylabel="Computation time (ms)",
+              framestyle=:grid,
               tex_output_standalone=true,
               legend=false
         )
-    scatter!(p2, string.(solvers), ts./1e6)
+    scatter!(p2, string.(solvers), ts./1e6, msa=0)
 
     return p1, p2
 end
 
 function long_benchmark(g; rescaling=false)
-    solvers, ts, E_err = collect_results(g, 1e4, rescaling=rescaling, short=false)
+    solvers, ts, E_errs = collect_results(g, 1e4, rescaling=rescaling, short=false)
     p1 = plot(background_color=colorant"#FAFAFA",
               xlabel="t",
               ylabel="Energy error",
+              framestyle=:grid,
               tex_output_standalone=true
         )
     for (E_err,solver) in zip(E_errs, solvers)
@@ -159,10 +162,11 @@ function long_benchmark(g; rescaling=false)
     p2 = plot(background_color=colorant"#FAFAFA",
               xlabel="Solver",
               ylabel="Computation time (s)",
+              framestyle=:grid,
               tex_output_standalone=true,
               legend=false
         )
-    scatter!(p2, string.(solvers), ts)
+    scatter!(p2, string.(solvers), ts, msa=0)
 
     return p1, p2
 end
