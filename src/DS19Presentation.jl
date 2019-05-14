@@ -1,9 +1,9 @@
 module DS19Presentation
 
 export load, slide4, slide5, slide6, slide7, slide8, slide9_10, slide11_12,
-    slide13_14_15, slide16, slide17,
+    slide13_14_15_16, slide17_18, slide19_20,
     slide_a1_4,
-    save_animation, animate
+    pgfplots, save_animation, animate
 
 using DataDeps
 using MD5
@@ -153,6 +153,7 @@ function slide8(g; saveimage=false)
         path = joinpath("assets", "poincare.png")
         save(path, sc)
     end
+    return sc
 end
 
 function slide9_10(g)
@@ -182,12 +183,12 @@ function slide_a1_4(g)
     return p1, p2, p3, p4
 end
 
-function slide13_14_15(g)
+function slide13_14_15_16(g)
     E = 120.
     p = PhysicalParameters(B=0.55)
     ic_alg = PoincareRand(n=500)
-    ic_dep = Classical.InitialConditions.depchain(p,E,ic_alg)
-    for T in 10. .^(4:6)
+    ic_dep = InitialConditions.depchain(p,E,ic_alg)
+    for T in 10. .^(4:7)
         λs = g[:λ, ic_dep..., (λ_alg=DynSys(T=T),)][1]
         plt = histogram(λs, nbins = 50,
             label="T=$T", lw=0, framestyle=:grid,
@@ -197,26 +198,29 @@ function slide13_14_15(g)
     end
 end
 
-function slide16(g)
+function slide17_18(g)
     E = 120.
     p = PhysicalParameters(B=0.55)
     ic_alg = PoincareRand(n=500)
     λhist, shist = selected_hist(g, E, DynSys(T=1e5), ic_alg, params=p)
     plt = plot(λhist, label=L"T=10^5",
         lw=0, framestyle=:grid, background_color=colorant"#FAFAFA")
-    plot!(plt, shist, label="selected", lw=0)
+    savefig(plt, "assets/hist-lambda-selected-before.tex")
 
-    savefig(plt, "assets/hist-lambda-selected.tex")
+    plot!(plt, shist, label="selected", lw=0)
+    savefig(plt, "assets/hist-lambda-selected-after.tex")
     return plt
 end
 
-function slide17(g)
-    p = PhysicalParameters(B=0.55)
+function slide19_20(g)
+    p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
-    plt = plot(background_color=colorant"#FAFAFA")
-    mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:1000,
-        plt=plt, framestyle=:grid)
+    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:1000,
+        framestyle=:grid, background_color=colorant"#FAFAFA")
     savefig(plt, "assets/mean-over-ic.tex")
+    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=0.01:0.01:10,
+        framestyle=:grid, background_color=colorant"#FAFAFA", lw=3, m=0)
+    savefig(plt, "assets/mean-over-ic-low.tex")
     return plt
 end
 

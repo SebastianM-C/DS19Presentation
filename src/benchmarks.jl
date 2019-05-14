@@ -4,7 +4,10 @@ using DiffEqCallbacks
 using ParameterizedFunctions
 using RecursiveArrayTools
 using Parameters
-using Plots
+using Plots: plot, plot!, scatter, scatter!, histogram, histogram!, savefig,
+    pgfplots
+using Colors
+
 pgfplots()
 
 function prob_setup(g, t; rescaling=false, Ttr=1e3, τ=5.)
@@ -143,7 +146,7 @@ function short_benchmark(g; rescaling=false)
               tex_output_standalone=true,
               legend=false
         )
-    scatter!(p2, string.(solvers), ts./1e6, msa=0)
+    scatter!(p2, string.(solvers), ts./1e6, m=6, markerstrokewidth=0)
 
     return p1, p2
 end
@@ -166,7 +169,7 @@ function long_benchmark(g; rescaling=false)
               tex_output_standalone=true,
               legend=false
         )
-    scatter!(p2, string.(solvers), ts, msa=0)
+    scatter!(p2, string.(solvers), ts, m=6, markerstrokewidth=0)
 
     return p1, p2
 end
