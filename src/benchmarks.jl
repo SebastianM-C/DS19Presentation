@@ -85,13 +85,15 @@ function E_conservation(g, t; rescaling=false, short=true)
     GC.gc()
     sol, t = @timed solve(p[2], Vern9(), abstol=1e-14, reltol=1e-14, saveat=saveat)
     suite["Vern9"] = (t=t, err=energy_err(sol))
-    if !rescaling && short
+    if !rescaling
         GC.gc()
         sol, t = @timed solve(p[3], Vern9(), callback=cb, abstol=1e-14, reltol=1e-14)
         suite["Vern9+ManifoldProjection"] = (t=t, err=energy_err(sol))
-        GC.gc()
-        sol, t = @timed solve(p[3], TaylorMethod(50), abstol=1e-20)
-        suite["TaylorMethod"] = (t=t, err=energy_err(sol))
+        if short
+            GC.gc()
+            sol, t = @timed solve(p[3], TaylorMethod(50), abstol=1e-20)
+            suite["TaylorMethod"] = (t=t, err=energy_err(sol))
+        end
     end
     offset = rescaling ? 2 : 0
     GC.gc()
@@ -146,7 +148,7 @@ function short_benchmark(g; rescaling=false)
               tex_output_standalone=true,
               legend=false
         )
-    scatter!(p2, string.(solvers), ts./1e6, m=12, color=ac, markerstrokealpha=0,
+    scatter!(p2, string.(solvers), ts./1e6, m=10, color=ac, markerstrokealpha=0,
         markerstrokewidth=0)
 
     return p1, p2
@@ -170,7 +172,7 @@ function long_benchmark(g; rescaling=false)
               tex_output_standalone=true,
               legend=false
         )
-    scatter!(p2, string.(solvers), ts, m=12, color=ac, markerstrokewidth=0,
+    scatter!(p2, string.(solvers), ts, m=10, color=ac, markerstrokewidth=0,
         markerstrokealpha=0)
 
     return p1, p2
