@@ -1,0 +1,67 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{every axis legend/.append style={%
+cells={anchor=west}}
+}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{arrows}
+\tikzset{>=stealth'}
+
+\begin{document}
+\begin{tikzpicture}[]
+\begin{axis}[height = {101.6mm}, ylabel = {$\lambda$}, xmin = {0.085}, xmax = {0.615}, ymax = {0.20323200722875598}, xlabel = {$B$}, unbounded coords=jump,scaled x ticks = false,xlabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},xmajorgrids = true,xtick = {0.1,0.2,0.30000000000000004,0.4,0.5,0.6000000000000001},xticklabels = {$0.1$,$0.2$,$0.3$,$0.4$,$0.5$,$0.6$},xtick align = inside,xticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},x grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
+draw opacity = 0.1,
+line width = 0.5,
+solid},x axis line style = {draw opacity = 0},scaled y ticks = false,ylabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},ymajorgrids = true,ytick = {0.0,0.05,0.1,0.15000000000000002,0.2},yticklabels = {$0.00$,$0.05$,$0.10$,$0.15$,$0.20$},ytick align = inside,yticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},y grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
+draw opacity = 0.1,
+line width = 0.5,
+solid},y axis line style = {draw opacity = 0},    xshift = 0.0mm,
+    yshift = 0.0mm,
+    axis background/.style={fill={rgb,1:red,0.98039216;green,0.98039216;blue,0.98039216}}
+,legend style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
+draw opacity = 1.0,
+line width = 1,
+solid,fill = {rgb,1:red,0.98039216;green,0.98039216;blue,0.98039216},font = {\fontsize{8 pt}{10.4 pt}\selectfont}},colorbar style={title=}, ymin = {-0.005794827717430826}, width = {152.4mm}]\addplot+ [color = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000},
+draw opacity = 1.0,
+line width = 1,
+solid,mark = *,
+mark size = 1.5,
+mark options = {
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
+    line width = 0,
+    rotate = 0,
+    solid
+},forget plot]coordinates {
+(0.1, 0.00012102610180087551)
+(0.12, 0.00013911036562111074)
+(0.14, 0.0035748950695892907)
+(0.16, 0.013386206099909856)
+(0.18, 0.028522459796737065)
+(0.2, 0.0473275517344587)
+(0.22, 0.06333735060228869)
+(0.24, 0.0778456491164631)
+(0.26, 0.08772026833419104)
+(0.28, 0.09762370589614842)
+(0.3, 0.10995599239574505)
+(0.32, 0.1214719940809103)
+(0.34, 0.13447014951559383)
+(0.36, 0.14771228971197384)
+(0.38, 0.16169279731984412)
+(0.4, 0.17242371015922464)
+(0.42, 0.18096649334379367)
+(0.44, 0.18853789182234182)
+(0.46, 0.19450825347751635)
+(0.48, 0.19705308013189382)
+(0.5, 0.19731615340952427)
+(0.52, 0.195448368463924)
+(0.54, 0.1912093744171557)
+(0.56, 0.18539571677051514)
+(0.58, 0.17742942414585447)
+(0.6, 0.1695864837724012)
+};
+\end{axis}
+
+\end{tikzpicture}
+\end{document}

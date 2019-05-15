@@ -1,3 +1,14 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{every axis legend/.append style={%
+cells={anchor=west}}
+}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{arrows}
+\tikzset{>=stealth'}
+
+\begin{document}
 \begin{tikzpicture}[]
 \begin{axis}[height = {101.6mm}, ylabel = {$\lambda$}, xmin = {-0.2897}, xmax = {10.2997}, ymax = {0.3098746220686523}, xlabel = {$E$}, unbounded coords=jump,scaled x ticks = false,xlabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},xmajorgrids = true,xtick = {0.0,2.5,5.0,7.5,10.0},xticklabels = {$0.0$,$2.5$,$5.0$,$7.5$,$10.0$},xtick align = inside,xticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},x grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
 draw opacity = 0.1,
@@ -11,15 +22,15 @@ solid},y axis line style = {draw opacity = 0},    xshift = 0.0mm,
 ,legend style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
 draw opacity = 1.0,
 line width = 1,
-solid,fill = {rgb,1:red,0.98039216;green,0.98039216;blue,0.98039216},font = {\fontsize{8 pt}{10.4 pt}\selectfont}},colorbar style={title=}, ymin = {-0.008978256368650695}, width = {152.4mm}]\addplot+ [color = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012},
+solid,fill = {rgb,1:red,0.98039216;green,0.98039216;blue,0.98039216},font = {\fontsize{8 pt}{10.4 pt}\selectfont}},colorbar style={title=}, ymin = {-0.008978256368650695}, width = {152.4mm}]\addplot+ [color = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000},
 draw opacity = 1.0,
 line width = 3,
 solid,mark = *,
-mark size = 0.0,
+mark size = 1.5,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
-    line width = 1,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
+    line width = 0,
     rotate = 0,
     solid
 },forget plot]coordinates {
@@ -1027,3 +1038,4 @@ mark options = {
 \end{axis}
 
 \end{tikzpicture}
+\end{document}

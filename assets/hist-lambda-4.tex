@@ -1,3 +1,14 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{every axis legend/.append style={%
+cells={anchor=west}}
+}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{arrows}
+\tikzset{>=stealth'}
+
+\begin{document}
 \begin{tikzpicture}[]
 \begin{axis}[height = {101.6mm}, ylabel = {}, xmin = {-0.016124}, xmax = {0.18612399999999998}, ymax = {267.8}, xlabel = {}, unbounded coords=jump,scaled x ticks = false,xlabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},xmajorgrids = true,xtick = {0.0,0.05,0.1,0.15000000000000002},xticklabels = {$0.00$,$0.05$,$0.10$,$0.15$},xtick align = inside,xticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},x grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
 draw opacity = 0.1,
@@ -17,31 +28,31 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,area legend]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,area legend]coordinates {
 (-0.005, 7.0)
 (-0.005, 0.0)
 (0.0, 0.0)
 (0.0, 7.0)
 (-0.005, 7.0)
 };
-\addlegendentry{T=10000.0}
+\addlegendentry{$T=10^4$}
 \addplot+ [color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
 draw opacity = 1.0,
 line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.0, 260.0)
 (0.0, 0.0)
 (0.005, 0.0)
@@ -54,12 +65,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.004999999999999999, 2.0)
 (0.004999999999999999, 0.0)
 (0.01, 0.0)
@@ -72,12 +83,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.010000000000000002, 2.0)
 (0.010000000000000002, 0.0)
 (0.015, 0.0)
@@ -90,12 +101,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.015000000000000001, 3.0)
 (0.015000000000000001, 0.0)
 (0.020000000000000004, 0.0)
@@ -108,12 +119,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.019999999999999997, 3.0)
 (0.019999999999999997, 0.0)
 (0.025, 0.0)
@@ -126,12 +137,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.025, 4.0)
 (0.025, 0.0)
 (0.03, 0.0)
@@ -144,12 +155,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.03, 6.0)
 (0.03, 0.0)
 (0.035, 0.0)
@@ -162,12 +173,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.035, 0.0)
 (0.035, 0.0)
 (0.04000000000000001, 0.0)
@@ -180,12 +191,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.039999999999999994, 4.0)
 (0.039999999999999994, 0.0)
 (0.045, 0.0)
@@ -198,12 +209,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.045, 3.0)
 (0.045, 0.0)
 (0.05, 0.0)
@@ -216,12 +227,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.05, 1.0)
 (0.05, 0.0)
 (0.05500000000000001, 0.0)
@@ -234,12 +245,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.05499999999999999, 1.0)
 (0.05499999999999999, 0.0)
 (0.06, 0.0)
@@ -252,12 +263,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.06, 2.0)
 (0.06, 0.0)
 (0.065, 0.0)
@@ -270,12 +281,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.065, 4.0)
 (0.065, 0.0)
 (0.07, 0.0)
@@ -288,12 +299,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.07, 1.0)
 (0.07, 0.0)
 (0.07500000000000001, 0.0)
@@ -306,12 +317,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.075, 3.0)
 (0.075, 0.0)
 (0.08, 0.0)
@@ -324,12 +335,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.08, 3.0)
 (0.08, 0.0)
 (0.085, 0.0)
@@ -342,12 +353,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.08499999999999999, 5.0)
 (0.08499999999999999, 0.0)
 (0.09, 0.0)
@@ -360,12 +371,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.09, 5.0)
 (0.09, 0.0)
 (0.095, 0.0)
@@ -378,12 +389,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.095, 4.0)
 (0.095, 0.0)
 (0.1, 0.0)
@@ -396,12 +407,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.1, 2.0)
 (0.1, 0.0)
 (0.10500000000000001, 0.0)
@@ -414,12 +425,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.105, 7.0)
 (0.105, 0.0)
 (0.11, 0.0)
@@ -432,12 +443,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.11, 13.0)
 (0.11, 0.0)
 (0.115, 0.0)
@@ -450,12 +461,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.11499999999999999, 13.0)
 (0.11499999999999999, 0.0)
 (0.12, 0.0)
@@ -468,12 +479,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.12, 12.0)
 (0.12, 0.0)
 (0.125, 0.0)
@@ -486,12 +497,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.125, 12.0)
 (0.125, 0.0)
 (0.13, 0.0)
@@ -504,12 +515,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.13, 14.0)
 (0.13, 0.0)
 (0.135, 0.0)
@@ -522,12 +533,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.135, 12.0)
 (0.135, 0.0)
 (0.14, 0.0)
@@ -540,12 +551,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.14, 17.0)
 (0.14, 0.0)
 (0.14500000000000002, 0.0)
@@ -558,12 +569,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.145, 25.0)
 (0.145, 0.0)
 (0.15, 0.0)
@@ -576,12 +587,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.15, 28.0)
 (0.15, 0.0)
 (0.155, 0.0)
@@ -594,12 +605,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.155, 14.0)
 (0.155, 0.0)
 (0.16, 0.0)
@@ -612,12 +623,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.16, 5.0)
 (0.16, 0.0)
 (0.165, 0.0)
@@ -630,12 +641,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.165, 2.0)
 (0.165, 0.0)
 (0.17, 0.0)
@@ -648,12 +659,12 @@ line width = 0,
 solid,mark = none,
 mark size = 2.0,
 mark options = {
-    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0,
-    fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity = 1.0,
+    color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 0.0,
+    fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity = 1.0,
     line width = 1,
     rotate = 0,
     solid
-},fill = {rgb,1:red,0.00000000;green,0.60560316;blue,0.97868012}, fill opacity=1.0,forget plot]coordinates {
+},fill = {rgb,1:red,0.40000000;green,0.60000000;blue,0.80000000}, fill opacity=1.0,forget plot]coordinates {
 (0.16999999999999998, 1.0)
 (0.16999999999999998, 0.0)
 (0.175, 0.0)
@@ -663,3 +674,4 @@ mark options = {
 \end{axis}
 
 \end{tikzpicture}
+\end{document}

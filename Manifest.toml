@@ -8,7 +8,7 @@ version = "0.4.1"
 
 [[AbstractPlotting]]
 deps = ["ColorBrewer", "ColorTypes", "Colors", "Contour", "FileIO", "FixedPointNumbers", "FreeType", "FreeTypeAbstraction", "GeometryTypes", "ImageMagick", "IntervalSets", "LinearAlgebra", "Markdown", "Observables", "Packing", "PlotUtils", "Printf", "Random", "Serialization", "Showoff", "SignedDistanceFields", "StaticArrays", "Statistics", "UnicodeFun"]
-git-tree-sha1 = "538ff4b5deca5a88bb66bc5b1378f6e97b6deed8"
+git-tree-sha1 = "105dc0bc97e75ae2a736eb12184b4ba1e42153ed"
 repo-rev = "master"
 repo-url = "https://github.com/JuliaPlots/AbstractPlotting.jl.git"
 uuid = "537997a7-5e4e-5d89-9595-2241ea00577e"
@@ -1096,7 +1096,7 @@ version = "0.4.3"
 
 [[NuclearSurfaceVibrations]]
 deps = ["AbstractPlotting", "Arpack", "CSV", "ChaosTools", "Colors", "DataFrames", "DataStructures", "DiffEqBase", "DiffEqCallbacks", "DiffEqMonteCarlo", "DiffEqParamEstim", "DifferentialEquations", "Distributed", "DynamicalSystems", "DynamicalSystemsBase", "FileIO", "GLMakie", "GeometricalPredicates", "ImageMagick", "Images", "InteractiveChaos", "IntervalArithmetic", "JLD2", "LaTeXStrings", "LightGraphs", "LinearAlgebra", "Logging", "LoggingExtras", "Makie", "NLopt", "NLsolve", "Observables", "OrdinaryDiffEq", "ParallelDataTransfer", "Parameters", "Pkg", "PlotlyJS", "Plots", "ProgressMeter", "Query", "Random", "RecipesBase", "RecursiveArrayTools", "Reexport", "Roots", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "StatsMakie", "StatsPlots", "StorageGraphs", "TimerOutputs", "UnicodeFun"]
-git-tree-sha1 = "76044107e3e32c7c089ec398f3f8c5052af59867"
+git-tree-sha1 = "f867fe0e424febe2d08863c8a7a72b99bc588770"
 repo-rev = "master"
 repo-url = "https://github.com/SebastianM-C/Nuclear-surface-vibrations"
 uuid = "61377714-a6e6-11e8-0d55-23ea14e6950b"
