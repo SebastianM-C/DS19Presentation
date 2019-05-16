@@ -1096,7 +1096,7 @@ version = "0.4.3"
 
 [[NuclearSurfaceVibrations]]
 deps = ["AbstractPlotting", "Arpack", "CSV", "ChaosTools", "Colors", "DataFrames", "DataStructures", "DiffEqBase", "DiffEqCallbacks", "DiffEqMonteCarlo", "DiffEqParamEstim", "DifferentialEquations", "Distributed", "DynamicalSystems", "DynamicalSystemsBase", "FileIO", "GLMakie", "GeometricalPredicates", "ImageMagick", "Images", "InteractiveChaos", "IntervalArithmetic", "JLD2", "LaTeXStrings", "LightGraphs", "LinearAlgebra", "Logging", "LoggingExtras", "Makie", "NLopt", "NLsolve", "Observables", "OrdinaryDiffEq", "ParallelDataTransfer", "Parameters", "Pkg", "PlotlyJS", "Plots", "ProgressMeter", "Query", "Random", "RecipesBase", "RecursiveArrayTools", "Reexport", "Roots", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "StatsMakie", "StatsPlots", "StorageGraphs", "TimerOutputs", "UnicodeFun"]
-git-tree-sha1 = "42daa8842ad89b923298c3edf0054a1f0f3b48b9"
+git-tree-sha1 = "e8c83a1ae4b484b2373c3c9d91e6eaabc4df9e60"
 repo-rev = "master"
 repo-url = "https://github.com/SebastianM-C/Nuclear-surface-vibrations"
 uuid = "61377714-a6e6-11e8-0d55-23ea14e6950b"
@@ -1221,10 +1221,10 @@ uuid = "a03496cd-edff-5a9b-9e67-9cda94a718b5"
 version = "0.2.5"
 
 [[PlotlyJS]]
-deps = ["Blink", "Compat", "DelimitedFiles", "JSExpr", "JSON", "Markdown", "Pkg", "PlotlyBase", "REPL", "Reexport", "Requires", "Test", "WebIO"]
-git-tree-sha1 = "1ffdd0b0062c08137cbd553284c1906ab46380db"
+deps = ["Blink", "Compat", "DelimitedFiles", "JSExpr", "JSON", "Markdown", "Pkg", "PlotlyBase", "REPL", "Reexport", "Requires", "WebIO"]
+git-tree-sha1 = "1405b3b71793184452a67c43780f95e69a57546c"
 uuid = "f0f68f2c-4968-5e81-91da-67840de0976a"
-version = "0.12.3"
+version = "0.12.4"
 
 [[Plots]]
 deps = ["Base64", "Contour", "Dates", "FixedPointNumbers", "GR", "GeometryTypes", "JSON", "LinearAlgebra", "Measures", "NaNMath", "Pkg", "PlotThemes", "PlotUtils", "Printf", "REPL", "Random", "RecipesBase", "Reexport", "Requires", "Showoff", "SparseArrays", "Statistics", "StatsBase", "UUIDs"]
@@ -1252,9 +1252,9 @@ version = "0.5.1"
 
 [[PositiveFactorizations]]
 deps = ["LinearAlgebra", "Test"]
-git-tree-sha1 = "86ae7329c4b5c266acf5c7c524a972300d991e1c"
+git-tree-sha1 = "957c3dd7c33895469760ce873082fbb6b3620641"
 uuid = "85a6dd25-e78a-55b7-8502-1745935b8125"
-version = "0.2.1"
+version = "0.2.2"
 
 [[Printf]]
 deps = ["Unicode"]
@@ -1533,9 +1533,9 @@ version = "0.4.0"
 
 [[Tables]]
 deps = ["IteratorInterfaceExtensions", "LinearAlgebra", "Requires", "TableTraits", "Test"]
-git-tree-sha1 = "9e748316f5aa7b7753c90de612ef98fe8b0ea297"
+git-tree-sha1 = "83b4a0261e5d01274f12b35d4c2212386fb15569"
 uuid = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
-version = "0.2.1"
+version = "0.2.3"
 
 [[TaylorIntegration]]
 deps = ["DiffEqBase", "Espresso", "LinearAlgebra", "Markdown", "Reexport", "TaylorSeries", "Test"]
