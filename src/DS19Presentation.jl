@@ -108,13 +108,14 @@ function slide5(g; saveimage=false, savevideo=false)
 end
 
 function slide6(g; saveimage=false, savevideo=false)
-    sol = get_sol(g, 1, B=0.55)
-    sim = get_sim(g, B=0.55)
+    i = 3
+    sol = get_sol(g, i, B=0.5, E=0.3)
+    sim = get_sim(g, B=0.5, E=0.3)
     t = Node(0.)
 
     surface_sc = animate_solution(sol, t)
     line_sc = path_animation3D(sol, t)
-    plot_slice!(line_sc, sim[1])
+    plot_slice!(line_sc, sim[i])
 
     sc = vbox(surface_sc, line_sc, sizes=[0.5,0.5])
     if saveimage
@@ -129,7 +130,7 @@ function slide6(g; saveimage=false, savevideo=false)
 end
 
 function slide7(g; saveimage=false, savevideo=false)
-    psol = get_psol(g, 1, B=0.55, E=1.)
+    psol = get_psol(g, 3, B=0.5, E=0.3)
     t = Node(0.)
 
     parallel_sc = parallel_paths(psol, t, color=ac)
@@ -150,7 +151,8 @@ function slide7(g; saveimage=false, savevideo=false)
 end
 
 function slide8(g; saveimage=false)
-    sc = poincare_explorer(g, 120., DynSys(T=1e5), PoincareRand(n=500), t=1e4)
+    sc = poincare_explorer(g, 120., DynSys(T=1e5), PoincareRand(n=500), t=1e4,
+        params=PhysicalParameters(B=0.55), markersize=0.08)
     if saveimage
         path = joinpath("assets", "poincare.png")
         save(path, sc)
@@ -184,15 +186,15 @@ end
 
 function slide_a3_4(g)
     p1, p2 = long_benchmark(g, rescaling=true)
-    savefig(p3, "assets/long-benchmark-rescaling-E.tex")
-    savefig(p4, "assets/long-benchmark-rescaling-t.tex")
+    savefig(p1, "assets/long-benchmark-rescaling-E.tex")
+    savefig(p2, "assets/long-benchmark-rescaling-t.tex")
 
     return p1, p2
 end
 
 function slide13_14_15_16(g)
     E = 120.
-    p = PhysicalParameters(B=0.55)
+    p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     ic_dep = InitialConditions.depchain(p,E,ic_alg)
     for T in 10. .^(4:7)
@@ -208,14 +210,14 @@ end
 
 function slide17_18(g)
     E = 120.
-    p = PhysicalParameters(B=0.55)
+    p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     λhist, shist = selected_hist(g, E, DynSys(T=1e5), ic_alg, params=p)
-    plt = plot(λhist, label=L"T=10^5", tex_output_standalone=true,
+    plt = plot(λhist, label=L"regular", tex_output_standalone=true,
         lw=0, framestyle=:grid, background_color=bg, color=colorant"#6699CC")
     savefig(plt, "assets/hist-lambda-selected-before.tex")
 
-    plot!(plt, shist, label="selected", lw=0, color=colorant"#DDCC77")
+    plot!(plt, shist, label="chaotic", lw=0, color=colorant"#DDCC77")
     savefig(plt, "assets/hist-lambda-selected-after.tex")
     return plt
 end
@@ -223,47 +225,47 @@ end
 function slide19_20(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
-    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
+    p1 = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=3,
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
-    savefig(plt, "assets/mean-over-ic.tex")
-    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=0.01:0.01:10,
+    savefig(p1, "assets/mean-over-ic.tex")
+    p2 = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=0.01:0.01:10,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=3,
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
-    savefig(plt, "assets/mean-over-ic-low.tex")
-    return plt
+    savefig(p2, "assets/mean-over-ic-low.tex")
+    return p1, p2
 end
 
 function slide21_22(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
-    plt = mean_over_E(g, DynSys(T=1e5), 10:10:3000, ic_alg=ic_alg,
+    p1 = mean_over_E(g, DynSys(T=1e5), 10:10:3000, ic_alg=ic_alg,
         Binterval=0.1:0.02:0.6, legend=false, markersize=7,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC",
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
-    savefig(plt, "assets/mean-over-E.tex")
-    plt = mean_over_E(g, DynSys(T=1e5), 0.01:0.01:10, ic_alg=ic_alg,
+    savefig(p1, "assets/mean-over-E.tex")
+    p2 = mean_over_E(g, DynSys(T=1e5), 0.01:0.01:10, ic_alg=ic_alg,
         Binterval=0.1:0.02:0.6, legend=false, markersize=7,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC",
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
-    savefig(plt, "assets/mean-over-E-low.tex")
-    return plt
+    savefig(p2, "assets/mean-over-E-low.tex")
+    return p1, p2
 end
 
 function slide23_24(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
-    plt = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
+    p1 = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
         Einterval=10:10:3000, reduction=mean,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=3,
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
-    savefig(plt, "assets/mean-over-ic-dinf.tex")
-    plt = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
+    savefig(p1, "assets/mean-over-ic-dinf.tex")
+    p2 = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
         Einterval=0.01:0.01:10, reduction=mean,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=3,
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
-    savefig(plt, "assets/mean-over-ic-low-dinf.tex")
-    return plt
+    savefig(p2, "assets/mean-over-ic-low-dinf.tex")
+    return p1, p2
 end
 
 end # module
