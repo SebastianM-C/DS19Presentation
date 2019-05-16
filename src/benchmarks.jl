@@ -72,39 +72,53 @@ energy_err(sol,offset=0) = DiffEqArray(map(
     axes(sol,2)), sol.t)
 
 function E_conservation(g, t; rescaling=false, short=true)
+    subsampling = rescaling ? 10 : 1
     if short
         Ttr = 0.
-        saveat = Float64[]
+        saveat = 0.1
+        subsampling = rescaling ? subsampling ÷ 10 : subsampling
     else
         Ttr = 1e3
-        saveat = 1.
+        saveat = 500.
     end
     p = prob_setup(g, t, rescaling=rescaling, Ttr=Ttr)
 
     suite = Dict{String,NamedTuple}()
     GC.gc()
-    sol, t = @timed solve(p[2], Vern9(), abstol=1e-14, reltol=1e-14, saveat=saveat)
-    suite["Vern9"] = (t=t, err=energy_err(sol))
+    sol, t = @timed solve(p[2], Vern9(), abstol=1e-14, reltol=1e-14)
+    if short
+        suite["Vern9"] = (t=t, err=energy_err(sol))
+    else
+        suite["Vern9"] = (t=t, err=energy_err(sol)[1:1000:end])
+    end
     if !rescaling
         GC.gc()
         sol, t = @timed solve(p[3], Vern9(), callback=cb, abstol=1e-14, reltol=1e-14)
-        suite["Vern9+ManifoldProjection"] = (t=t, err=energy_err(sol))
         if short
+            suite["Vern9+ManifoldProjection"] = (t=t, err=energy_err(sol))
             GC.gc()
             sol, t = @timed solve(p[3], TaylorMethod(50), abstol=1e-20)
             suite["TaylorMethod"] = (t=t, err=energy_err(sol))
+        else
+            # forced subsampling
+            suite["Vern9+ManifoldProjection"] = (t=t, err=energy_err(sol)[1:1000:end])
         end
     end
     offset = rescaling ? 2 : 0
     GC.gc()
     sol, t = @timed solve(p[1], DPRKN12(), abstol=1e-14, reltol=1e-14)
-    suite["DPRKN12"] = (t=t, err=energy_err(sol, offset))
+    if short
+        suite["DPRKN12"] = (t=t, err=energy_err(sol, offset)[1:subsampling:end])
+    else
+        # forced subsampling
+        suite["DPRKN12"] = (t=t, err=energy_err(sol, offset)[1:500:end][1:subsampling:end])
+    end
     GC.gc()
     sol, t = @timed solve(p[1], KahanLi8(), dt=1e-2, saveat=saveat)
-    suite["KahanLi8"] = (t=t, err=energy_err(sol, offset))
+    suite["KahanLi8"] = (t=t, err=energy_err(sol, offset)[1:subsampling:end])
     GC.gc()
     sol, t = @timed solve(p[1], SofSpa10(), dt=1e-2, saveat=saveat)
-    suite["SofSpa10"] = (t=t, err=energy_err(sol, offset))
+    suite["SofSpa10"] = (t=t, err=energy_err(sol, offset)[1:subsampling:end])
 
     return suite
 end
@@ -155,7 +169,7 @@ function short_benchmark(g; rescaling=false)
 end
 
 function long_benchmark(g; rescaling=false)
-    solvers, ts, E_errs = collect_results(g, 1e4, rescaling=rescaling, short=false)
+    solvers, ts, E_errs = collect_results(g, 1e5, rescaling=rescaling, short=false)
     p1 = plot(background_color=bg,
               xlabel="t",
               ylabel="Energy error",

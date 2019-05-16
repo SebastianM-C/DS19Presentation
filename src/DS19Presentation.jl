@@ -213,7 +213,7 @@ function slide17_18(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     λhist, shist = selected_hist(g, E, DynSys(T=1e5), ic_alg, params=p)
-    plt = plot(λhist, label=L"regular", tex_output_standalone=true,
+    plt = plot(λhist, label=L"T=10^5", tex_output_standalone=true,
         lw=0, framestyle=:grid, background_color=bg, color=colorant"#6699CC")
     savefig(plt, "assets/hist-lambda-selected-before.tex")
 
