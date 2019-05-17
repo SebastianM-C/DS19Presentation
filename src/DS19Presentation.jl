@@ -2,7 +2,7 @@ module DS19Presentation
 
 export load, slide4, slide5, slide6, slide7, slide8, slide9_10, slide11_12,
     slide13_14_15_16, slide17_18, slide19_20, slide21_22, slide23_24, slide25_26,
-    slide_a1_2, slide_a3_4,
+    slide_a1, slide_a2_3, slide_a3_4,
     pgfplots, save_animation, animate
 
 using DataDeps
@@ -107,10 +107,9 @@ function slide5(g; saveimage=false, savevideo=false)
     return t, sc
 end
 
-function slide6(g; saveimage=false, savevideo=false)
-    i = 3
-    sol = get_sol(g, i, B=0.5, E=0.3)
-    sim = get_sim(g, B=0.5, E=0.3)
+function nucleus_poincare(g, B, E; i=1)
+    sol = get_sol(g, i, B=B, E=E)
+    sim = get_sim(g, B=B, E=E)
     t = Node(0.)
 
     surface_sc = animate_solution(sol, t)
@@ -118,12 +117,30 @@ function slide6(g; saveimage=false, savevideo=false)
     plot_slice!(line_sc, sim[i])
 
     sc = vbox(surface_sc, line_sc, sizes=[0.5,0.5])
+    return t, sc
+end
+
+function slide6(g; saveimage=false, savevideo=false)
+    t, sc = nucleus_poincare(g, 0.5, 0.3, i=3)
     if saveimage
         path = joinpath("assets", "nucleus-with-poincare.png")
         save(path, sc)
     end
     if savevideo
         path = joinpath("assets", "nucleus-with-poincare.mp4")
+        save_animation(sc, t, (0, 40), path)
+    end
+    return t, sc
+end
+
+function slide_a1(g; saveimage=false, savevideo=false)
+    t, sc = nucleus_poincare(g, 0.4, 0.1, i=1)
+    if saveimage
+        path = joinpath("assets", "nucleus-with-poincare-regular.png")
+        save(path, sc)
+    end
+    if savevideo
+        path = joinpath("assets", "nucleus-with-poincare-regular.mp4")
         save_animation(sc, t, (0, 40), path)
     end
     return t, sc
