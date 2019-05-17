@@ -31,7 +31,7 @@ using AbstractPlotting: Node, save, hbox, vbox
 include("benchmarks.jl")
 
 # open("src/data.jl", "w") do fh
-#     registration = generate(Figshare(), "https://figshare.com/articles/DS19_test_database/8078699")
+#     registration = generate(Figshare(), "https://figshare.com/articles/DS19_presentation_materials/8146106")
 #     print(fh, registration)
 # end
 
