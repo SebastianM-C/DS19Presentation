@@ -152,7 +152,7 @@ end
 
 function slide8(g; saveimage=false)
     sc = poincare_explorer(g, 120., DynSys(T=1e5), PoincareRand(n=500), t=1e4,
-        params=PhysicalParameters(B=0.55), markersize=0.08)
+        params=PhysicalParameters(B=0.5), markersize=0.08)
     if saveimage
         path = joinpath("assets", "poincare.png")
         save(path, sc)
@@ -226,11 +226,11 @@ function slide19_20(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     p1 = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
-        framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=3,
+        framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=2.5,
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
     savefig(p1, "assets/mean-over-ic.tex")
     p2 = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=0.01:0.01:10,
-        framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=3,
+        framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=2.5,
         markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
     savefig(p2, "assets/mean-over-ic-low.tex")
     return p1, p2
@@ -255,17 +255,17 @@ end
 function slide23_24(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
-    p1 = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
-        Einterval=10:10:3000, framestyle=:grid, background_color=bg,
-        color=colorant"#6699CC", lw=3, markerstrokewidth=0, markerstrokealpha=0,
-        tex_output_standalone=true)
-    savefig(p1, "assets/mean-over-ic-dinf.tex")
+    # p1 = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
+    #     Einterval=10:10:3000, framestyle=:grid, background_color=bg,
+    #     color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
+    #     tex_output_standalone=true)
+    # savefig(p1, "assets/mean-over-ic-dinf.tex")
     p2 = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
         Einterval=0.01:0.01:10, framestyle=:grid, background_color=bg,
-        color=colorant"#6699CC", lw=3, markerstrokewidth=0, markerstrokealpha=0,
+        color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
         tex_output_standalone=true)
     savefig(p2, "assets/mean-over-ic-low-dinf.tex")
-    return p1, p2
+    return p2
 end
 
 function slide25_26(g)
@@ -273,12 +273,12 @@ function slide25_26(g)
     ic_alg = PoincareRand(n=500)
     # p1 = mean_over_ic(g, DynSys(T=1e5), DInftyAlgorithm(T=1e5), ic_alg, params=p,
     #     Einterval=10:10:3000, framestyle=:grid, background_color=bg,
-    #     color=colorant"#6699CC", lw=3, markerstrokewidth=0, markerstrokealpha=0,
+    #     color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
     #     tex_output_standalone=true)
     # savefig(p1, "assets/mean-over-ic-Gamma.tex")
     p2 = mean_over_ic(g, DynSys(T=1e5), DInftyAlgorithm(T=1e5), ic_alg, params=p,
         Einterval=0.01:0.02:10, framestyle=:grid, background_color=bg,
-        color=colorant"#6699CC", lw=3, markerstrokewidth=0, markerstrokealpha=0,
+        color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
         tex_output_standalone=true)
     savefig(p2, "assets/mean-over-ic-low-Gamma.tex")
     return p2
