@@ -83,7 +83,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \begin{frame}
 	\begin{figure}
 		\includegraphics[width=\textwidth]{nucleus-with-sections}
@@ -103,33 +102,22 @@
 
 \section{Numerical simulations}
 
+\subsubsection{Choosing an integrator}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-	\begin{figure}
-		\includegraphics[width=\textwidth]{dist-with-log}
-		\caption{The distance between nearby trajectories for \(B=0.5, E=0.3\)}
-	\end{figure}
+\begin{frame}{Julia}
+	\begin{itemize}
+		\item Numerical simulations and the visualizations of the
+		results was done in Julia (using
+		DifferentialEquations.jl and DynamicalSystems.jl).
+		\item Having access to the implementations of a large
+		number of integrators helps us taking an informed decision
+		for the choiche of the integration algorithm.
+	\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-	\begin{figure}
-		\includegraphics[width=\textwidth]{poincare}
-		\caption{A Poincaré section at \(B=0.5, E=120\)}
-	\end{figure}
-\end{frame}
-
-\subsubsection{Choosing an integrator}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -138,7 +126,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -147,7 +135,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -156,7 +144,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -165,9 +153,70 @@
 	\end{figure}
 \end{frame}
 
-\subsubsection{The maximal Lyapunov coefficient}
+\subsubsection{The maximal Lyapunov exponent}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Quantifying chaoticity}
+	\begin{itemize}
+		\item The maximal Lyapunov exponent is defined as
+		\[
+			\lambda = \lim\limits_{t \to \infty} \frac{1}{t} \ln{\frac{\dd{x}(t)}{\dd{x}(0)}}
+		\]
+		\item One of the signature characheristics of chaos is the sensitivity to the initial conditions	(\(\lambda > 0\)).
+		\item We can get some intuitive insight for the sensitivity to
+		the initial conditions by following the evolution of two nearby
+		initial conditions.
+	\end{itemize}
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 13 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{dist-with-log}
+		\caption{The distance between nearby trajectories for \(B=0.5, E=0.3\)}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 14 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Interactive exploratinos}
+	\begin{itemize}
+		\item For a given set of parameters ($B$ and $E$) we have
+		a set of compatible initial conditions.
+		\item Poincaré sections give us a global picture of the
+		dynamics.
+		\item For a better (visual) understanding of the dynamics
+		we can show the Lyapunov exponents on the Poincaré map.
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 15 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{poincare}
+		\caption{A Poincaré section at \(B=0.5, E=120\)}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 16 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{A note regarding the \(\lambda\) histogram}
+	\begin{itemize}
+		\item Theoretically the Lyapunov exponent histogram should
+		have two sharp peaks: one for the regular part and one for
+		the chaotic one.
+		\item The spread in the chaotic part is given by finite time
+		effects.
+		\item To better understand this we will take a look at how
+		the integration time affects the results.
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 17 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -176,7 +225,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 14 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 18 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -185,7 +234,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 15 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 19 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -194,7 +243,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 16 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 20 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -203,7 +252,20 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 17 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 21 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Averaging \(\lambda\) over the initial conditions}
+	\begin{itemize}
+		\item We define the averaged Lyapunov coefficient as the
+		mean of the maximal Lyapunov exponents in the chaotic region.
+		\item We need a sufficiently robust method of selecting
+		the \(\lambda\)s in the chaotic region.
+		\item We consider as chaotic everything after the first
+		local maxima in the histogram.
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 22 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -212,7 +274,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 18 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 23 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -221,7 +283,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 19 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 24 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -230,7 +292,7 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 20 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 25 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
@@ -239,21 +301,67 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 21 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 26 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Other indicators}
+	\begin{itemize}
+		\item We can look at the distance between two nearby
+		trajectories in the limit of \(T \to \infty\) in order to
+		get an estimate of the phase space volume.
+		\item We define \(\Gamma\) as
+		\[
+		\Gamma = \frac{e^\lambda - 1}{d_\infty}
+		\]
+		\item We can apply similar averaging techniques as for \(\lambda\).
+
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 25 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/mean-over-E}
+		\includestandalone[width=\textwidth]{../assets/mean-over-ic-low-dinf}
+		\caption{Averaged \(d_\infty\) for \(B=0.5, E \in (0.01, 10)\).}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 26 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/mean-over-ic-low-Gamma}
+		\caption{Averaged \(\Gamma\) for \(B=0.5, E \in (0.01, 10)\).}
+	\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 27 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Averaging \(\lambda\) over the initial conditions}
+	\begin{itemize}
+		\item We can get a global picture of the sistem by integrating
+		the averaged Lyapunov coefficient over an energy interval.
+		\item For a large energy interval we have a non-trivial
+		dependence of the averaged Lyapunov exponent with respect
+		to the non-integrability parameter $B$.
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 28 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{figure}
+		\includestandalone[width=\textwidth]{../assets/mean-over-E-low}
 		\caption{Averaged \(\lambda\) for \(B=0.5, E \in (10, 3000)\)
 		and \(B \in (0.1, 0.6)\).}
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 22 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 29 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/mean-over-E-low}
+		\includestandalone[width=\textwidth]{../assets/mean-over-E}
 		\caption{Averaged \(\lambda\) for \(B=0.5, E \in (0.01, 10)\)
 		and \(B \in (0.1, 0.6)\).}
 	\end{figure}
@@ -270,15 +378,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 24 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/mean-over-ic-low-dinf}
-		\caption{Averaged \(d_\infty\) for \(B=0.5, E \in (0.01, 10)\).}
-	\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 24 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % \begin{frame}
 % 	\begin{figure}
 % 		\includestandalone[width=\textwidth]{../assets/mean-over-ic-Gamma}
@@ -286,14 +385,7 @@
 % 	\end{figure}
 % \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 25 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/mean-over-ic-low-Gamma}
-		\caption{Averaged \(\Gamma\) for \(B=0.5, E \in (0.01, 10)\).}
-	\end{figure}
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 26 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -301,6 +393,15 @@
 
 \begin{frame}[standout]
 Thank you!
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 27 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]{References}
+
+  % \bibliography{demo}
+  % \bibliographystyle{abbrv}
+
 \end{frame}
 
 \appendix
@@ -352,19 +453,5 @@ Thank you!
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide a5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Backup slides}
-  Sometimes, it is useful to add slides at the end of your presentation to
-  refer to during audience questions.
-
-
-\end{frame}
-
-\begin{frame}[allowframebreaks]{References}
-
-  \bibliography{demo}
-  \bibliographystyle{abbrv}
-
-\end{frame}
 
 \end{document}

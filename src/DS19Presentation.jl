@@ -217,7 +217,7 @@ function slide13_14_15_16(g)
     for T in 10. .^(4:7)
         λs = g[:λ, ic_dep..., (λ_alg=DynSys(T=T),)][1]
         tpow = Int(log10(T))
-        plt = histogram(λs, nbins = 50,
+        plt = histogram(λs, nbins = 50, xlabel=L"\lambda", ylabel=L"N",
             label=latexstring("T=10^$tpow"), lw=0, framestyle=:grid,
             color=colorant"#6699CC", background_color=bg, markerstrokealpha=0,
             tex_output_standalone=true)
@@ -230,8 +230,9 @@ function slide17_18(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     λhist, shist = selected_hist(g, E, DynSys(T=1e5), ic_alg, params=p)
-    plt = plot(λhist, label=L"T=10^5", tex_output_standalone=true,
-        lw=0, framestyle=:grid, background_color=bg, color=colorant"#6699CC")
+    plt = plot(λhist, xlabel=L"\lambda", ylabel=L"N", label=L"T=10^5",
+        tex_output_standalone=true, lw=0, framestyle=:grid, background_color=bg,
+        color=colorant"#6699CC")
     savefig(plt, "assets/hist-lambda-selected-before.tex")
 
     plot!(plt, shist, label="chaotic", lw=0, color=colorant"#DDCC77")
