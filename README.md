@@ -2,16 +2,34 @@
 
 ![conference_logo](assets/DS19_logo.png)
 
-Materials for the SIAM DS19 Presentation
+This repository contains Materials for the SIAM DS19 Presentation
+entitled "Large-Scale Numerical Investigations into the Dynamics of Nonlinear Classical Systems".
+
+In order to ensure the reproducibility of the results all the
+computations were performed inside a [singularity container](https://www.sylabs.io/singularity/). The benefits of this approach are
+twofold, as having containers simplifies the deployment in HPC scenarios. Singularity containers are created from definition files.
+The definition file used in this case is `julia.def`. After building
+the container(`sudo singularity build name.sif julia.def`) and opening a shell inside (`singularity shell name.sif`) one can start
+reproducing the Julia environment, as presented bellow.
+
+# Notes
+
+- It is not necessary to use singularity to reproduce the results,
+but by using it you can be sure that the environment is the same.
+- The dataset required to reproduce the results has about 1GB, so
+depending on the Internet connection it may take a longer time to
+download.
+- If you encounter errors or problems when trying to reproduce the results, please open an issue with the detailed steps that you made
+and the errors or problems encountered.
 
 # Julia instructions
 
 In order to reproduce the results you need to reproduce the environment in which
-they were created. For this task, julia projects use `Manifest.toml` files. Thus,
+they were created. For this task, [Julia projects](https://julialang.github.io/Pkg.jl/v1/) use `Manifest.toml` files. Thus,
 the package manager will install the exact same package versions as the ones
 that were used by the author.
-Moreover, the main dataset was uploaded to figshare and with the help of the
-DataDeps package it will be automatically downloaded on the first use.
+Moreover, the main dataset was uploaded to [figshare](https://figshare.com/articles/DS19_presentation_materials/8146106) and with the help of the
+[DataDeps package](https://github.com/oxinabox/DataDeps.jl) it will be automatically downloaded on the first use.
 
 After cloning the repository and changing to the `DS19Presentation` directory
 open a julia REPL in that directory and follow the instructions bellow:
@@ -77,19 +95,17 @@ for that slide. In order to enter the help mode press `?` at the REPL. After tha
 type the name of the function you want to know more about. For example:
 
 ```julia
+help?> slide5
+search: slide5 slide15 slide_a5_6 slide24_25 slide6 slide4 slide28 slide27 slide13 slide_a8 slide_a7 slide_a2 slide_a1 slide8_9 slide_a3_4 slide30_31 slide22_23
 
-help?> slide7
-search: slide7 slide17_18 slide8 slide6 slide5 slide4
+  slide5(g; saveimage=false, savevideo=false)
 
-  No documentation found.
-
-  DS19Presentation.slide7 is a Function.
-
-  # 1 method for generic function "slide7":  [1] slide7(g; saveimage, savevideo) in DS19Presentation at C:\Users\sebastian\Documents\Physics\Projects\DS19Presentation\src\DS19Presentation.jl:132
+  This function returns the time node and the scene for the simulation of the nuclear surface and its sections. Call as t, sc = slide5(g); and then display the
+  scene using display(sc) and use animate(t, (0, 40)) to animate it.
 ```
 
 5. Call the appropriate function.
 ```julia
-julia> slide8(g)
+julia> slide15(g)
 
 ```

@@ -2,7 +2,7 @@ module DS19Presentation
 
 export load, slide4, slide5, slide6, slide8_9, slide10_11, slide13, slide15,
     slide17_18_19_20, slide22_23, slide24_25, slide27, slide28, slide30_31,
-    slide_a1, slide_a2, slide_a_3_4, slide_a5_6, slide_a7, slide_a8,
+    slide_a1, slide_a2, slide_a3_4, slide_a5_6, slide_a7, slide_a8,
     pgfplots, save_animation, animate
 
 # Fix for https://github.com/JuliaIO/ImageMagick.jl/issues/140
@@ -92,6 +92,15 @@ function slide4(g; saveimage=false)
     return surface_sc
 end
 
+"""
+    slide5(g; saveimage=false, savevideo=false)
+
+This function returns the time node and the scene for the
+simulation of the nuclear surface and its sections.
+Call as `t, sc = slide5(g);` and then display the scene
+using `display(sc)` and use `animate(t, (0, 40))` to animate
+it.
+"""
 function slide5(g; saveimage=false, savevideo=false)
     sol = get_sol(g)
     t = Node(0.)
@@ -123,6 +132,15 @@ function nucleus_poincare(g, B, E; i=1)
     return t, sc
 end
 
+"""
+    slide6(g; saveimage=false, savevideo=false)
+
+This function returns the time node and the scene for the
+simulation of the nuclear surface and the motion in phase space.
+Call as `t, sc = slide6(g);` and then display the scene
+using `display(sc)` and use `animate(t, (0, 40))` to animate
+it.
+"""
 function slide6(g; saveimage=false, savevideo=false)
     t, sc = nucleus_poincare(g, 0.5, 0.3, i=3)
     if saveimage
@@ -136,6 +154,12 @@ function slide6(g; saveimage=false, savevideo=false)
     return t, sc
 end
 
+"""
+    slide8_9(g)
+
+This function returns the two plots for short time benchmarks.
+Call as `p1, p2 = slide8_9(g)`.
+"""
 function slide8_9(g)
     p1, p2 = short_benchmark(g)
     savefig(p1, "assets/short-benchmark-E.tex")
@@ -144,6 +168,14 @@ function slide8_9(g)
     return p1, p2
 end
 
+"""
+    slide10_11(g)
+
+This function returns the two plots for long time benchmarks.
+Run twice in a row for meaningfull results, as the first time
+will include precompilation times. See the julia documentation for
+details. Call as `p1, p2 = slide10_11(g)`.
+"""
 function slide10_11(g)
     p1, p2 = long_benchmark(g)
     savefig(p1, "assets/long-benchmark-E.tex")
@@ -152,6 +184,15 @@ function slide10_11(g)
     return p1, p2
 end
 
+"""
+    slide13(g; saveimage=false, savevideo=false)
+
+This function returns the time node and the scene for the
+simulation of the distance between two close trajectories.
+Call as `t, sc = slide13(g);` and then display the scene
+using `display(sc)` and use `animate(t, (0, 40))` to animate
+it.
+"""
 function slide13(g; saveimage=false, savevideo=false)
     psol = get_psol(g, 3, B=0.5, E=0.3)
     t = Node(0.)
@@ -173,6 +214,12 @@ function slide13(g; saveimage=false, savevideo=false)
     return t, sc
 end
 
+"""
+    slide15(g; saveimage=false)
+
+This function returns the interactive Poincaré section.
+Call as `slide15(g)`.
+"""
 function slide15(g; saveimage=false)
     sc = poincare_explorer(g, 120., DynSys(T=1e5), PoincareRand(n=500), t=1e4,
         params=PhysicalParameters(B=0.5), markersize=0.08)
@@ -183,6 +230,12 @@ function slide15(g; saveimage=false)
     return sc
 end
 
+"""
+    slide17_18_19_20(g)
+
+This function produces the .tex files for the histogram evolution
+of λ with respect to the integration time in the `assets` folder.
+"""
 function slide17_18_19_20(g)
     E = 120.
     p = PhysicalParameters(B=0.5)
@@ -199,6 +252,11 @@ function slide17_18_19_20(g)
     end
 end
 
+"""
+    slide22_23(g)
+
+This functuion returns the histogram with the selected chaotic part.
+"""
 function slide22_23(g)
     E = 120.
     p = PhysicalParameters(B=0.5)
@@ -214,6 +272,11 @@ function slide22_23(g)
     return plt
 end
 
+"""
+    slide24_25(g)
+
+Call as `p1, p2 = slide24_25(g)`.
+"""
 function slide24_25(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
@@ -250,6 +313,11 @@ function slide28(g)
     return plt
 end
 
+"""
+    slide30_31(g)
+
+Call as `p1, p2 = slide30_31(g)`.
+"""
 function slide30_31(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
@@ -266,14 +334,16 @@ function slide30_31(g)
     return p1, p2
 end
 
-function slide_a1(g)
+function slide_a1()
     x = y = range(-5, 5, length=100)
     plt = contour(x,y,
         (x,y)->V((x,y),PhysicalParameters(B=0.5)),
-        xlabel=L"q\_0", ylabel=L"q\_2", colorbar_title=L"V",
+        xlabel=L"q_0", ylabel=L"q_2", colorbar_title=L"V",
         levels=50, framestyle=:grid, tex_output_standalone=true,
         background_color=bg)
     savefig(plt, "assets/potential-contour.tex")
+
+    return plt
 end
 
 function slide_a2(g; saveimage=false, savevideo=false)
@@ -310,10 +380,12 @@ function slide_a7(g)
     ic_alg = PoincareRand(n=500)
     plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=2.5,
-        markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
+        markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true,
+        label=latexstring("T=10^5"), legend=:topright)
     mean_over_ic(g, DynSys(T=1e6), ic_alg, params=p, Einterval=10:10:3000,
-        plt=plt)
-    savefig(plt, "assets/mean-over-ic-comparison.tex")
+        plt=plt, color=colorant"#DDCC77", lw=2.5, markerstrokewidth=0,
+        markerstrokealpha=0, label=latexstring("T=10^6"), legend=:topright)
+    savefig(plt, "assets/mean-over-ic-T-comparison.tex")
 
     return plt
 end
@@ -323,12 +395,14 @@ function slide_a8(g)
     ic_alg = PoincareRand(n=500)
     plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
         framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=2.5,
-        markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
+        markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true,
+        label=latexstring("B=$(p.B)"), legend=:topright)
 
     p = PhysicalParameters(B=0.6)
     mean_over_ic(g, DynSys(T=1e6), ic_alg, params=p, Einterval=10:10:3000,
-        plt=plt)
-    savefig(plt, "assets/mean-over-ic-difference.tex")
+        plt=plt, color=colorant"#DDCC77", lw=2.5, markerstrokewidth=0,
+        markerstrokealpha=0, label=latexstring("B=$(p.B)"), legend=:topright)
+    savefig(plt, "assets/mean-over-ic-B-difference.tex")
 
     return plt
 end

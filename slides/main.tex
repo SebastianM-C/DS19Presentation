@@ -116,8 +116,8 @@
 \begin{frame}{\texttt{Julia}}
 	\begin{itemize}
 		\item Numerical simulations and the visualizations of the
-		results was done in \texttt{Julia} (\texttt{DifferentialEquations.jl}
-		and \texttt{DynamicalSystems.jl} for simulations and respectively
+		results was done in \texttt{Julia} \cite{Julia-2017} (\texttt{DifferentialEquations.jl} \cite{DifferentialEquations.jl-2017}
+		and \texttt{DynamicalSystems.jl} \cite{DynamicalSystems.jl-2018} for simulations and respectively
 		\texttt{Plots.jl} and \texttt{Makie.jl} for visualizations).
 		\item Having access to the implementations of a large
 		number of integrators helps us taking an informed decision
@@ -394,7 +394,14 @@
 
 \begin{frame}{Conclusions}
 	\begin{itemize}
-		\item
+		\item The \texttt{Julia} ecosystem provides performant and
+		flexible tools for exploring dynamical systems.
+		\item We investigated in detail the classical dynamics of a
+		non-integrable system and found a series of interesting
+		phenomena with respect to its phase-space structure as
+		function of energy and the non-integrability parameter.
+		\item In order to propote open and reproducible\cite{singularity-2017,white2018datadepsjl} science the presentation and the dataset needed for the visualizations
+		are freely available online at \url{https://github.com/SebastianM-C/DS19Presentation}.
 	\end{itemize}
 \end{frame}
 
@@ -402,8 +409,8 @@
 
 \begin{frame}[allowframebreaks]{References}
 
-  % \bibliography{demo}
-  % \bibliographystyle{abbrv}
+  \bibliography{reference}
+  \bibliographystyle{abbrv}
 
 \end{frame}
 
@@ -474,7 +481,7 @@ Thank you!
 
 \begin{frame}
 	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/mean-over-ic-comparison}
+		\includestandalone[width=\textwidth]{../assets/mean-over-ic-T-comparison}
 		\caption{Averaged \(\lambda\) for \(B=0.5\) and \(E \in (10, 3000)\).}
 	\end{figure}
 \end{frame}
@@ -483,7 +490,7 @@ Thank you!
 
 \begin{frame}
 	\begin{figure}
-		\includestandalone[width=\textwidth]{../assets/mean-over-ic-difference}
+		\includestandalone[width=\textwidth]{../assets/mean-over-ic-B-difference}
 		\caption{Averaged \(\lambda\) for \(B \in {0.5,0.6}\) and \(E \in (10, 3000)\).}
 	\end{figure}
 \end{frame}
