@@ -1,6 +1,8 @@
 # DS19Presentation
-Materials for the SIAM DS19 Presentation
+
 ![conference_logo](assets/DS19_logo.png)
+
+Materials for the SIAM DS19 Presentation
 
 # Julia instructions
 
@@ -25,25 +27,12 @@ at the julia prompt. The prompt will change from `julia>` to `(v1.1) pkg>`.
 
 ```julia
 (DS19Presentation) pkg> instantiate
-
+```
+After the instalations finish, exit `Pkg` mode by pressing `backspace` (you should now have the `julia>` prompt again).
+```julia
 julia> using DS19Presentation
-[ Info: Recompiling stale cache file C:\Users\sebastian\.julia\compiled\v1.1\DS19Presentation\aQbRc.ji for DS19Presentation [c52eaf16-6d25-11e9-34da-d5c7cd6dfd33]WARNING: using GLAbstraction.update! in module GLMakie conflicts with an existing identifier.
-
-Update message: DynamicalSystems v1.3
-
-A method that estimates the predictability properties
-of a
-dynamical system has been implemented, following the work of:
-
-Wernecke, H., Sándor, B. & Gros, C.
-*How to test for partially predictable chaos*.
-
-See the function `predictability`.
-
+[ Info: Precompiling DS19Presentation [c52eaf16-6d25-11e9-34da-d5c7cd6dfd33]
 WARNING: could not import Base.quit into AtomShell
-
-julia> WARNING: both AbstractPlotting and DynamicalSystems export "step!"; uses of it in module InteractiveChaos must be qualified
-WARNING: both CSSUtil and Base export "empty"; uses of it in module Interact must be qualified
 ```
 
 3. Load the main dataset. The first time you will do this, you will be asked if
@@ -51,28 +40,25 @@ you want to download it. To exit the `Pkg` mode press `backspace`.
 
 ```julia
 julia> g=load()
-This program has requested access to the data dependency DS19 presentation materials test.
-which is not currently installed. It can be installed
-automatically, and you will not see this message again.
+This program has requested access to the data dependency DS19 presentation materials.
+which is not currently installed. It can be installed automatically, and you will not see this message again.
 
-Dataset: DS19 presentation materials test
-Website: https://figshare.com/articles/DS19_test_database/8078699
+Dataset: DS19 presentation materials
+Website: https://figshare.com/articles/DS19_presentation_materials/8146106
 Author: Sebastian Micluța-Câmpeanu
-Date of Publication: 2019-05-14T10:46:58Z
+Date of Publication: 2019-05-17T22:19:05Z
 License: MIT (https://opensource.org/licenses/MIT)
 
-This is the database containing the data to reproduce
-the plots in the DS19 presentation of the author. This is just a test version.
+Here are the materials for the SIAM DS19 presentation entitled "Large-Scale Numerical Investigations into the Dynamics of Nonlinear Classical Systems". The dataset used for all the computations is included as the binary file graph.jls and it requires julia 1.1.0 and the two julia packages linked below to be correctly read. See the DS19Presentation GitHub repository linked below for more details on how to reproduce the presented figures.
 
-Please cite this dataset: Micluța-Câmpeanu, Sebastian
-(2019): DS19 presentation materials test. figshare. Conference contribution.
+Please cite this dataset: Micluța-Câmpeanu, Sebastian (2019): DS19 presentation materials. figshare. Conference contribution.
 
 
 
-Do you want to download the dataset from Any["https://ndownloader.figshare.com/files/15142844", "https://ndownloader.figshare.com/files/15142850"] to "C:\Users\sebastian\.julia\datadeps\DS19 presentation materials test"?
+Do you want to download the dataset from Any["https://ndownloader.figshare.com/files/15181136"] to "/home/user/.julia/datadeps/DS19 presentation materials"?
 [y/n]
 y
-{105620, 209345} Int64 storage graph
+{105627, 209359} Int64 storage graph
 ```
 
 3. Set the `Plots.jl` backend to PGFPlots. This is just a technical detail required
