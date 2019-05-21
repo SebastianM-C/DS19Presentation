@@ -42,7 +42,7 @@ const bg = colorant"#FAFAFA"
 const ac = colorant"#EB811B"
 
 function load()
-    deserialize(datadep"DS19 presentation materials test/graph.jls")
+    deserialize(datadep"DS19 presentation materials/graph.jls")
 end
 
 function ics_separate(g, E=0.1, ic_alg=PoincareRand(n=5), B=0.15)
