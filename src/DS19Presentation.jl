@@ -2,7 +2,7 @@ module DS19Presentation
 
 export load, slide4, slide5, slide6, slide8_9, slide10_11, slide13, slide15,
     slide17_18_19_20, slide22_23, slide24_25, slide27, slide28, slide30_31,
-    slide_a1, slide_a2, slide_a_3_4, slide_a5_6, slide_a7,
+    slide_a1, slide_a2, slide_a_3_4, slide_a5_6, slide_a7, slide_a8,
     pgfplots, save_animation, animate
 
 # Fix for https://github.com/JuliaIO/ImageMagick.jl/issues/140
@@ -314,6 +314,21 @@ function slide_a7(g)
     mean_over_ic(g, DynSys(T=1e6), ic_alg, params=p, Einterval=10:10:3000,
         plt=plt)
     savefig(plt, "assets/mean-over-ic-comparison.tex")
+
+    return plt
+end
+
+function slide_a8(g)
+    p = PhysicalParameters(B=0.5)
+    ic_alg = PoincareRand(n=500)
+    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
+        framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=2.5,
+        markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
+
+    p = PhysicalParameters(B=0.6)
+    mean_over_ic(g, DynSys(T=1e6), ic_alg, params=p, Einterval=10:10:3000,
+        plt=plt)
+    savefig(plt, "assets/mean-over-ic-difference.tex")
 
     return plt
 end
