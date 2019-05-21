@@ -14,19 +14,24 @@
 \usepackage{tikz}
 \usepackage{standalone}
 
+\usepackage[english]{isodate}
+
 \newcommand{\ee}{\operatorname{e}}          % Euler's number
 \newcommand{\ii}{\mathrm{i}}                % imaginary unit
 \newcommand{\ad}[1]{a_{#1}^{\dagger}}       % creation operator
 \newcommand*\mean[1]{\overline{#1}}         % mean
 
-\usetheme{metropolis}           % Use metropolis theme
+\usetheme[progressbar=frametitle]{metropolis}           % Use metropolis theme
 \usepackage{appendixnumberbeamer}
+
 \title{Large-Scale Numerical Investigations into the Dynamics of Nonlinear Classical Systems}
-\date{\today}
+\subtitle{SIAM Conference on Applications of Dynamical Systems}
+\date{Snowbird, 22 \printdayoff\today}
 \author{Sebastian Micluța-Câmpeanu}
 \institute{University of Bucharest}
+
 \begin{document}
-\maketitle
+\maketitle%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -54,7 +59,9 @@
 \begin{frame}{The model}
   \begin{itemize}
 		\item The physical system that we model is the surface of heavy nuclei.
-    \item The Hamiltonian describes the constrained motion of the vibrational quadrupole degrees of freedom of nuclear surface.
+    \item We use a Hamiltonian that describes the constrained
+		motion of the vibrational quadrupole degrees of freedom of
+		the nuclear surface.
   \end{itemize}
 \end{frame}
 
@@ -102,15 +109,16 @@
 
 \section{Numerical simulations}
 
-\subsubsection{Choosing an integrator}
+\subsubsection{The \texttt{Julia} ecosystem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Julia}
+\begin{frame}{\texttt{Julia}}
 	\begin{itemize}
 		\item Numerical simulations and the visualizations of the
-		results was done in Julia (using
-		DifferentialEquations.jl and DynamicalSystems.jl).
+		results was done in \texttt{Julia} (\texttt{DifferentialEquations.jl}
+		and \texttt{DynamicalSystems.jl} for simulations and respectively
+		\texttt{Plots.jl} and \texttt{Makie.jl} for visualizations).
 		\item Having access to the implementations of a large
 		number of integrators helps us taking an informed decision
 		for the choiche of the integration algorithm.
@@ -176,7 +184,8 @@
 \begin{frame}
 	\begin{figure}
 		\includegraphics[width=\textwidth]{dist-with-log}
-		\caption{The distance between nearby trajectories for \(B=0.5, E=0.3\)}
+		\caption{The distance between nearby trajectories for \(B=0.5\)
+		and \(E=0.3\).}
 	\end{figure}
 \end{frame}
 
@@ -221,7 +230,8 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/hist-lambda-4}
-		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5, E=120\).}
+		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5\)
+		and \(E=120\).}
 	\end{figure}
 \end{frame}
 
@@ -230,7 +240,8 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/hist-lambda-5}
-		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5, E=120\).}
+		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5\)
+		and \(E=120\).}
 	\end{figure}
 \end{frame}
 
@@ -239,7 +250,8 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/hist-lambda-6}
-		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5, E=120\).}
+		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5\)
+		and \(E=120\).}
 	\end{figure}
 \end{frame}
 
@@ -248,7 +260,8 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/hist-lambda-7}
-		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5, E=120\).}
+		\caption{Maximal Lyapunov coefficient histogram for \(B=0.5\)
+		and \(E=120\).}
 	\end{figure}
 \end{frame}
 
@@ -270,7 +283,8 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/hist-lambda-selected-before}
-		\caption{Selecting the chaotic trajectories for \(B=0.5, E=120\).}
+		\caption{Selecting the chaotic trajectories for \(B=0.5\)
+		and \(E=120\).}
 	\end{figure}
 \end{frame}
 
@@ -279,7 +293,8 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/hist-lambda-selected-after}
-		\caption{Selecting the chaotic trajectories for \(B=0.5, E=120\).}
+		\caption{Selecting the chaotic trajectories for \(B=0.5\)
+		and \(E=120\).}
 	\end{figure}
 \end{frame}
 
@@ -288,7 +303,7 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/mean-over-ic}
-		\caption{Averaged \(\lambda\) for \(B=0.5, E \in (10, 3000)\).}
+		\caption{Averaged \(\lambda\) for \(B=0.5\) and \(E \in (10, 3000)\).}
 	\end{figure}
 \end{frame}
 
@@ -297,7 +312,7 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/mean-over-ic-low}
-		\caption{Averaged \(\lambda\) for \(B=0.5, E \in (0.01, 10)\).}
+		\caption{Averaged \(\lambda\) for \(B=0.5\) and \(E \in (0.01, 10)\).}
 	\end{figure}
 \end{frame}
 
@@ -308,9 +323,13 @@
 		\item We can look at the distance between two nearby
 		trajectories in the limit of \(T \to \infty\) in order to
 		get an estimate of the phase space volume.
-		\item We define \(\Gamma\) as
+		\item In a finite phase space volume we cannot have only an
+		exponential divergence of trajectories, so there must be some
+		something that folds the trajectories back after the initial
+		divergence.
+		\item We define \(\Gamma\) as a measure of folding
 		\[
-		\Gamma = \frac{e^\lambda - 1}{d_\infty}
+		\Gamma = \frac{\ee^\lambda - 1}{d_\infty}
 		\]
 		\item We can apply similar averaging techniques as for \(\lambda\).
 
@@ -322,7 +341,7 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/mean-over-ic-low-dinf}
-		\caption{Averaged \(d_\infty\) for \(B=0.5, E \in (0.01, 10)\).}
+		\caption{Averaged \(d_\infty\) for \(B=0.5\) and \(E \in (0.01, 10)\).}
 	\end{figure}
 \end{frame}
 
@@ -331,16 +350,18 @@
 \begin{frame}
 	\begin{figure}
 		\includestandalone[width=\textwidth]{../assets/mean-over-ic-low-Gamma}
-		\caption{Averaged \(\Gamma\) for \(B=0.5, E \in (0.01, 10)\).}
+		\caption{Averaged \(\Gamma\) for \(B=0.5\) and \(E \in (0.01, 10)\).}
 	\end{figure}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 27 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Averaging \(\lambda\) over the initial conditions}
+\begin{frame}{Averaging \(\lambda\) over the energy}
 	\begin{itemize}
 		\item We can get a global picture of the sistem by integrating
 		the averaged Lyapunov coefficient over an energy interval.
+		\item For a small energy interval in the low energy limit we
+		get a monotonusly increasing dependence.
 		\item For a large energy interval we have a non-trivial
 		dependence of the averaged Lyapunov exponent with respect
 		to the non-integrability parameter $B$.
@@ -367,41 +388,29 @@
 	\end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 23 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-% 	\begin{figure}
-% 		\includestandalone[width=\textwidth]{../assets/mean-over-ic-dinf}
-% 		\caption{Averaged \(d_\infty\) for \(B=0.5, E \in (10, 3000)\).}
-% 	\end{figure}
-% \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 24 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-% 	\begin{figure}
-% 		\includestandalone[width=\textwidth]{../assets/mean-over-ic-Gamma}
-% 		\caption{Averaged \(\Gamma\) for \(B=0.5, E \in (10, 3000)\).}
-% 	\end{figure}
-% \end{frame}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 26 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions}
 
-\begin{frame}[standout]
-Thank you!
+\begin{frame}{Conclusions}
+	\begin{itemize}
+		\item
+	\end{itemize}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 27 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 26 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[allowframebreaks]{References}
 
   % \bibliography{demo}
   % \bibliographystyle{abbrv}
 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% slide 27 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[standout]
+Thank you!
 \end{frame}
 
 \appendix

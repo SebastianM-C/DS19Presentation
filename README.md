@@ -1,5 +1,6 @@
 # DS19Presentation
 Materials for the SIAM DS19 Presentation
+![conference_logo](assets/DS19_logo.png)
 
 # Julia instructions
 
