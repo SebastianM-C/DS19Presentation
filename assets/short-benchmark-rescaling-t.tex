@@ -1,3 +1,4 @@
+\RequirePackage{luatex85}
 \documentclass[tikz]{standalone}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -10,10 +11,10 @@ cells={anchor=west}}
 
 \begin{document}
 \begin{tikzpicture}[]
-\begin{axis}[height = {101.6mm}, ylabel = {Computation time (ms)}, xmin = {0.41000000000000003}, xmax = {3.59}, ymax = {12.04989603}, xlabel = {Solver}, unbounded coords=jump,scaled x ticks = false,xlabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},xmajorgrids = true,xtick = {0.5,1.5,2.5,3.5},xticklabels = {$Vern9$,$DPRKN12$,$SofSpa10$,$KahanLi8$},xtick align = inside,xticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},x grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
+\begin{axis}[height = {101.6mm}, ylabel = {Computation time (ms)}, xmin = {0.41000000000000003}, xmax = {3.59}, ymax = {9.50414572}, xlabel = {Solver}, unbounded coords=jump,scaled x ticks = false,xlabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},xmajorgrids = true,xtick = {0.5,1.5,2.5,3.5},xticklabels = {$Vern9$,$DPRKN12$,$SofSpa10$,$KahanLi8$},xtick align = inside,xticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},x grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
 draw opacity = 0.1,
 line width = 0.5,
-solid},x axis line style = {draw opacity = 0},scaled y ticks = false,ylabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},ymajorgrids = true,ytick = {2.5,5.0,7.5,10.0},yticklabels = {$2.5$,$5.0$,$7.5$,$10.0$},ytick align = inside,yticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},y grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
+solid},x axis line style = {draw opacity = 0},scaled y ticks = false,ylabel style = {font = {\fontsize{11 pt}{14.3 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},ymajorgrids = true,ytick = {2.0,4.0,6.0,8.0},yticklabels = {$2$,$4$,$6$,$8$},ytick align = inside,yticklabel style = {font = {\fontsize{8 pt}{10.4 pt}\selectfont}, color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000}, draw opacity = 1.0, rotate = 0.0},y grid style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
 draw opacity = 0.1,
 line width = 0.5,
 solid},y axis line style = {draw opacity = 0},    xshift = 0.0mm,
@@ -22,7 +23,7 @@ solid},y axis line style = {draw opacity = 0},    xshift = 0.0mm,
 ,legend style = {color = {rgb,1:red,0.00000000;green,0.00000000;blue,0.00000000},
 draw opacity = 1.0,
 line width = 1,
-solid,fill = {rgb,1:red,0.98039216;green,0.98039216;blue,0.98039216},font = {\fontsize{8 pt}{10.4 pt}\selectfont}},colorbar style={title=}, ymin = {1.04020497}, width = {152.4mm}]\addplot+[draw=none, color = {rgb,1:red,0.92156863;green,0.50588235;blue,0.10588235},
+solid,fill = {rgb,1:red,0.98039216;green,0.98039216;blue,0.98039216},font = {\fontsize{8 pt}{10.4 pt}\selectfont}},colorbar style={title=}, ymin = {0.53620228}, width = {152.4mm}]\addplot+[draw=none, color = {rgb,1:red,0.92156863;green,0.50588235;blue,0.10588235},
 draw opacity = 1.0,
 line width = 0,
 solid,mark = *,
@@ -34,10 +35,10 @@ mark options = {
     rotate = 0,
     solid
 },forget plot] coordinates {
-(0.5, 1.401701)
-(1.5, 1.3518)
-(2.5, 11.738301)
-(3.5, 7.6844)
+(0.5, 0.994913)
+(1.5, 0.790012)
+(2.5, 9.250336)
+(3.5, 5.321896)
 };
 \end{axis}
 
