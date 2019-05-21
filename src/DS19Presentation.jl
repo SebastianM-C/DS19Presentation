@@ -5,6 +5,9 @@ export load, slide4, slide5, slide6, slide7, slide8, slide9_10, slide11_12,
     slide_a1, slide_a2_3, slide_a3_4,
     pgfplots, save_animation, animate
 
+# Fix for https://github.com/JuliaIO/ImageMagick.jl/issues/140
+using ImageMagick
+
 using DataDeps
 using MD5
 using Serialization
