@@ -1,8 +1,8 @@
 module DS19Presentation
 
-export load, slide4, slide5, slide6, slide7, slide8, slide9_10, slide11_12,
-    slide13_14_15_16, slide17_18, slide19_20, slide21_22, slide23_24, slide25_26,
-    slide_a1, slide_a2_3, slide_a3_4,
+export load, slide4, slide5, slide6, slide8_9, slide10_11, slide13, slide15,
+    slide17_18_19_20, slide22_23, slide24_25, slide27, slide28, slide30_31,
+    slide_a1, slide_a2, slide_a_3_4, slide_a5_6, slide_a7,
     pgfplots, save_animation, animate
 
 # Fix for https://github.com/JuliaIO/ImageMagick.jl/issues/140
@@ -136,20 +136,23 @@ function slide6(g; saveimage=false, savevideo=false)
     return t, sc
 end
 
-function slide_a1(g; saveimage=false, savevideo=false)
-    t, sc = nucleus_poincare(g, 0.4, 0.1, i=1)
-    if saveimage
-        path = joinpath("assets", "nucleus-with-poincare-regular.png")
-        save(path, sc)
-    end
-    if savevideo
-        path = joinpath("assets", "nucleus-with-poincare-regular.mp4")
-        save_animation(sc, t, (0, 40), path)
-    end
-    return t, sc
+function slide8_9(g)
+    p1, p2 = short_benchmark(g)
+    savefig(p1, "assets/short-benchmark-E.tex")
+    savefig(p2, "assets/short-benchmark-t.tex")
+
+    return p1, p2
 end
 
-function slide7(g; saveimage=false, savevideo=false)
+function slide10_11(g)
+    p1, p2 = long_benchmark(g)
+    savefig(p1, "assets/long-benchmark-E.tex")
+    savefig(p2, "assets/long-benchmark-t.tex")
+
+    return p1, p2
+end
+
+function slide13(g; saveimage=false, savevideo=false)
     psol = get_psol(g, 3, B=0.5, E=0.3)
     t = Node(0.)
 
@@ -170,7 +173,7 @@ function slide7(g; saveimage=false, savevideo=false)
     return t, sc
 end
 
-function slide8(g; saveimage=false)
+function slide15(g; saveimage=false)
     sc = poincare_explorer(g, 120., DynSys(T=1e5), PoincareRand(n=500), t=1e4,
         params=PhysicalParameters(B=0.5), markersize=0.08)
     if saveimage
@@ -180,39 +183,7 @@ function slide8(g; saveimage=false)
     return sc
 end
 
-function slide9_10(g)
-    p1, p2 = short_benchmark(g)
-    savefig(p1, "assets/short-benchmark-E.tex")
-    savefig(p2, "assets/short-benchmark-t.tex")
-
-    return p1, p2
-end
-
-function slide11_12(g)
-    p1, p2 = long_benchmark(g)
-    savefig(p1, "assets/long-benchmark-E.tex")
-    savefig(p2, "assets/long-benchmark-t.tex")
-
-    return p1, p2
-end
-
-function slide_a1_2(g)
-    p1, p2 = short_benchmark(g, rescaling=true)
-    savefig(p1, "assets/short-benchmark-rescaling-E.tex")
-    savefig(p2, "assets/short-benchmark-rescaling-t.tex")
-
-    return p1, p2
-end
-
-function slide_a3_4(g)
-    p1, p2 = long_benchmark(g, rescaling=true)
-    savefig(p1, "assets/long-benchmark-rescaling-E.tex")
-    savefig(p2, "assets/long-benchmark-rescaling-t.tex")
-
-    return p1, p2
-end
-
-function slide13_14_15_16(g)
+function slide17_18_19_20(g)
     E = 120.
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
@@ -228,7 +199,7 @@ function slide13_14_15_16(g)
     end
 end
 
-function slide17_18(g)
+function slide22_23(g)
     E = 120.
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
@@ -243,7 +214,7 @@ function slide17_18(g)
     return plt
 end
 
-function slide19_20(g)
+function slide24_25(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     p1 = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
@@ -257,7 +228,29 @@ function slide19_20(g)
     return p1, p2
 end
 
-function slide21_22(g)
+function slide27(g)
+    p = PhysicalParameters(B=0.5)
+    ic_alg = PoincareRand(n=500)
+    plt = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
+        Einterval=0.01:0.01:10, framestyle=:grid, background_color=bg,
+        color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
+        tex_output_standalone=true)
+    savefig(plt, "assets/mean-over-ic-dinf.tex")
+    return plt
+end
+
+function slide28(g)
+    p = PhysicalParameters(B=0.5)
+    ic_alg = PoincareRand(n=500)
+    plt = mean_over_ic(g, DynSys(T=1e5), DInftyAlgorithm(T=1e5), ic_alg, params=p,
+        Einterval=0.01:0.02:10, framestyle=:grid, background_color=bg,
+        color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
+        tex_output_standalone=true)
+    savefig(plt, "assets/mean-over-ic-Gamma.tex")
+    return plt
+end
+
+function slide30_31(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     p1 = mean_over_E(g, DynSys(T=1e5), 10:10:3000, ic_alg=ic_alg,
@@ -273,36 +266,56 @@ function slide21_22(g)
     return p1, p2
 end
 
-function slide23_24(g)
-    p = PhysicalParameters(B=0.5)
-    ic_alg = PoincareRand(n=500)
-    # p1 = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
-    #     Einterval=10:10:3000, framestyle=:grid, background_color=bg,
-    #     color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
-    #     tex_output_standalone=true)
-    # savefig(p1, "assets/mean-over-ic-dinf.tex")
-    p2 = mean_over_ic(g, DInftyAlgorithm(T=1e5), ic_alg, params=p,
-        Einterval=0.01:0.01:10, framestyle=:grid, background_color=bg,
-        color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
-        tex_output_standalone=true)
-    savefig(p2, "assets/mean-over-ic-low-dinf.tex")
-    return p2
+function slide_a1(g)
+    x = y = range(-5, 5, length=100)
+    plt = contour(x,y,
+        (x,y)->V((x,y),PhysicalParameters(B=0.5)),
+        xlabel=L"q\_0", ylabel=L"q\_2", colorbar_title=L"V",
+        levels=50, framestyle=:grid, tex_output_standalone=true,
+        background_color=bg)
+    savefig(plt, "assets/potential-contour.tex")
 end
 
-function slide25_26(g)
+function slide_a2(g; saveimage=false, savevideo=false)
+    t, sc = nucleus_poincare(g, 0.4, 0.1, i=1)
+    if saveimage
+        path = joinpath("assets", "nucleus-with-poincare-regular.png")
+        save(path, sc)
+    end
+    if savevideo
+        path = joinpath("assets", "nucleus-with-poincare-regular.mp4")
+        save_animation(sc, t, (0, 40), path)
+    end
+    return t, sc
+end
+
+function slide_a3_4(g)
+    p1, p2 = short_benchmark(g, rescaling=true)
+    savefig(p1, "assets/short-benchmark-rescaling-E.tex")
+    savefig(p2, "assets/short-benchmark-rescaling-t.tex")
+
+    return p1, p2
+end
+
+function slide_a5_6(g)
+    p1, p2 = long_benchmark(g, rescaling=true)
+    savefig(p1, "assets/long-benchmark-rescaling-E.tex")
+    savefig(p2, "assets/long-benchmark-rescaling-t.tex")
+
+    return p1, p2
+end
+
+function slide_a7(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
-    # p1 = mean_over_ic(g, DynSys(T=1e5), DInftyAlgorithm(T=1e5), ic_alg, params=p,
-    #     Einterval=10:10:3000, framestyle=:grid, background_color=bg,
-    #     color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
-    #     tex_output_standalone=true)
-    # savefig(p1, "assets/mean-over-ic-Gamma.tex")
-    p2 = mean_over_ic(g, DynSys(T=1e5), DInftyAlgorithm(T=1e5), ic_alg, params=p,
-        Einterval=0.01:0.02:10, framestyle=:grid, background_color=bg,
-        color=colorant"#6699CC", lw=2.5, markerstrokewidth=0, markerstrokealpha=0,
-        tex_output_standalone=true)
-    savefig(p2, "assets/mean-over-ic-low-Gamma.tex")
-    return p2
+    plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
+        framestyle=:grid, background_color=bg, color=colorant"#6699CC", lw=2.5,
+        markerstrokewidth=0, markerstrokealpha=0, tex_output_standalone=true)
+    mean_over_ic(g, DynSys(T=1e6), ic_alg, params=p, Einterval=10:10:3000,
+        plt=plt)
+    savefig(plt, "assets/mean-over-ic-comparison.tex")
+
+    return plt
 end
 
 end # module

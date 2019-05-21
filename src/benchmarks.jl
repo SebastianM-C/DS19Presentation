@@ -5,7 +5,7 @@ using ParameterizedFunctions
 using RecursiveArrayTools
 using Parameters
 using Plots: plot, plot!, scatter, scatter!, histogram, histogram!, savefig,
-    pgfplots
+    pgfplots, contour
 using Colors
 
 pgfplots()
