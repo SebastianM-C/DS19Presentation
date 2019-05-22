@@ -1,6 +1,7 @@
 # DS19Presentation
 
 ![conference_logo](assets/DS19_logo.png)
+![nucleus_animation](assets/nucleus-regular.gif)
 
 This repository contains Materials for the SIAM DS19 Presentation
 entitled "Large-Scale Numerical Investigations into the Dynamics of Nonlinear Classical Systems".

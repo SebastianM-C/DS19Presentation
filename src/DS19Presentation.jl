@@ -2,7 +2,7 @@ module DS19Presentation
 
 export load, slide4, slide5, slide6, slide8_9, slide10_11, slide13, slide15,
     slide17_18_19_20, slide22_23, slide24_25, slide27, slide28, slide30_31,
-    slide_a1, slide_a2, slide_a3_4, slide_a5_6, slide_a7, slide_a8,
+    slide_a2, slide_a3, slide_a4_5, slide_a6_7, slide_a8, slide_a9,
     pgfplots, save_animation, animate
 
 # Fix for https://github.com/JuliaIO/ImageMagick.jl/issues/140
@@ -275,6 +275,8 @@ end
 """
     slide24_25(g)
 
+This function returns the plot of the maximal Lyapunov exponent averaged
+over initial conditions.
 Call as `p1, p2 = slide24_25(g)`.
 """
 function slide24_25(g)
@@ -291,6 +293,12 @@ function slide24_25(g)
     return p1, p2
 end
 
+"""
+    slide27(g)
+
+This function returns the plot of d∞ averaged over initial conditions.
+Call as `slide27(g)`.
+"""
 function slide27(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
@@ -302,6 +310,12 @@ function slide27(g)
     return plt
 end
 
+"""
+    slide28(g)
+
+This function returns the plot of Γ averaged over initial conditions.
+Call as `slide28(g)`.
+"""
 function slide28(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
@@ -316,6 +330,8 @@ end
 """
     slide30_31(g)
 
+This function returns the plot of the maximal Lyapunov exponent averaged
+over the energy.
 Call as `p1, p2 = slide30_31(g)`.
 """
 function slide30_31(g)
@@ -334,7 +350,7 @@ function slide30_31(g)
     return p1, p2
 end
 
-function slide_a1()
+function slide_a2()
     x = y = range(-5, 5, length=100)
     plt = contour(x,y,
         (x,y)->V((x,y),PhysicalParameters(B=0.5)),
@@ -346,7 +362,7 @@ function slide_a1()
     return plt
 end
 
-function slide_a2(g; saveimage=false, savevideo=false)
+function slide_a3(g; saveimage=false, savevideo=false)
     t, sc = nucleus_poincare(g, 0.4, 0.1, i=1)
     if saveimage
         path = joinpath("assets", "nucleus-with-poincare-regular.png")
@@ -359,7 +375,7 @@ function slide_a2(g; saveimage=false, savevideo=false)
     return t, sc
 end
 
-function slide_a3_4(g)
+function slide_a4_5(g)
     p1, p2 = short_benchmark(g, rescaling=true)
     savefig(p1, "assets/short-benchmark-rescaling-E.tex")
     savefig(p2, "assets/short-benchmark-rescaling-t.tex")
@@ -367,7 +383,7 @@ function slide_a3_4(g)
     return p1, p2
 end
 
-function slide_a5_6(g)
+function slide_a6_7(g)
     p1, p2 = long_benchmark(g, rescaling=true)
     savefig(p1, "assets/long-benchmark-rescaling-E.tex")
     savefig(p2, "assets/long-benchmark-rescaling-t.tex")
@@ -375,7 +391,7 @@ function slide_a5_6(g)
     return p1, p2
 end
 
-function slide_a7(g)
+function slide_a8(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
@@ -390,7 +406,7 @@ function slide_a7(g)
     return plt
 end
 
-function slide_a8(g)
+function slide_a9(g)
     p = PhysicalParameters(B=0.5)
     ic_alg = PoincareRand(n=500)
     plt = mean_over_ic(g, DynSys(T=1e5), ic_alg, params=p, Einterval=10:10:3000,
