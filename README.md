@@ -7,10 +7,13 @@ This repository contains Materials for the SIAM DS19 Presentation
 entitled "Large-Scale Numerical Investigations into the Dynamics of Nonlinear Classical Systems".
 
 In order to ensure the reproducibility of the results all the
-computations were performed inside a [singularity container](https://www.sylabs.io/singularity/). The benefits of this approach are
-twofold, as having containers simplifies the deployment in HPC scenarios. Singularity containers are created from definition files.
-The definition file used in this case is `julia.def`. After building
-the container(`sudo singularity build name.sif julia.def`) and opening a shell inside (`singularity shell name.sif`) one can start
+computations were performed inside a [singularity container](https://www.sylabs.io/singularity/).
+The benefits of this approach are twofold, as having containers simplifies the deployment in HPC scenarios.
+Singularity containers are created from definition files.
+The definition file used in this case is `julia.def`. The corresponding image can be downloaded
+(`singularity pull library://sebastian_mc/default/julia:julia1.1.0`)
+or built on the local computer(`sudo singularity build name.sif julia.def`).
+After aquiring the image, one can open a shell inside (`singularity shell name.sif`) and start
 reproducing the Julia environment, as presented bellow.
 
 # Notes
